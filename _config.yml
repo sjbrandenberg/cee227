@@ -1,7 +1,7 @@
 # Book settings
 # Learn more at https://jupyterbook.org/customize/config.html
 
-title: CEE 227: Computational Geomechanics
+title: CEE 227 - Computational Geomechanics
 author: Scott Brandenberg
 
 # Force re-execution of notebooks on each build.
