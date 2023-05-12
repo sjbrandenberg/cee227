@@ -1,0 +1,15 @@
+# Table of contents
+# Learn more at https://jupyterbook.org/customize/toc.html
+
+format: jb-book
+root: README
+chapters:
+- file: integration_algorithms
+- file: one_dimensional_plasticity_implicit
+- file: one_dimensional_plasticity_explicit
+- file: one_dimensional_plasticity_multiple_yield_surface
+- file: one_dimensional_plasticity_bounding_surface
+- file: drucker_prager
+- file: mohr_coulomb_with_dilatancy
+- file: nonlinear_elasticity
+- file: cam_clay
