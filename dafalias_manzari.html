@@ -1,0 +1,1173 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>Dafalis and Manzari Model &#8212; CEE 227 - Computational Geomechanics</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'dafalias_manzari';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="README.html">
+  
+  
+  
+  
+  
+    <p class="title logo__title">CEE 227 - Computational Geomechanics</p>
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="README.html">
+                    CEE227: Numerical Methods in Geotechncial Engineering
+                </a>
+            </li>
+        </ul>
+        <ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="integration_algorithms.html">Integration algorith example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="one_dimensional_plasticity_implicit.html">Elastic Perfectly-Plastic - Implicit Integration</a></li>
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="one_dimensional_plasticity_explicit.html">Elastic Perfectly-Plastic - Explicit Integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="one_dimensional_plasticity_multiple_yield_surface.html">Elasto-Plastic Multiple Yield Surface Plasticity Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="nonlinear_elasticity.html">Integration of nonlinear elasticity equations</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="cam_clay.html">Cam Clay Material Model</a></li>
+
+
+
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://colab.research.google.com/github/sjbrandenberg/cee227/blob/main/docs/dafalias_manzari.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch onColab"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img src="_static/images/logo_colab.png">
+  </span>
+<span class="btn__text-container">Colab</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/sjbrandenberg/cee227" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/sjbrandenberg/cee227/issues/new?title=Issue%20on%20page%20%2Fdafalias_manzari.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/dafalias_manzari.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Dafalis and Manzari Model</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Dafalis and Manzari Model</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#yield-surface">Yield Surface</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#elasticity">Elasticity</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#flow-rule">Flow Rule</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hardening">Hardening</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#model-constants">Model Constants</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#explicit-integration-solution">Explicit Integration Solution</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#reproduce-figure-5">Reproduce Figure 5</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#reproduce-figure-6">Reproduce Figure 6</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#reproduce-figure-7">Reproduce Figure 7</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#strain-controlled-cyclic-undrained">Strain controlled cyclic undrained</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#stress-controlled-undrained-cyclic-loading">Stress-Controlled Undrained Cyclic Loading</a></li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="dafalis-and-manzari-model">
+<h1>Dafalis and Manzari Model<a class="headerlink" href="#dafalis-and-manzari-model" title="Permalink to this heading">#</a></h1>
+<p>The Dafalias and Manzari model is a stress-ratio controlled, critical state compatible bounding surface plasticity model for sand.</p>
+<p>Dafalias Y.F., and Manzari, M.T. (2004). “Simple plasticity sand model accounting for fabric change effects.” J. Eng. Mech., 130(6) <a class="reference external" href="https://doi.org/10.1061/(ASCE)0733-9399(2004)130:6(622)">https://doi.org/10.1061/(ASCE)0733-9399(2004)130:6(622)</a></p>
+<section id="yield-surface">
+<h2>Yield Surface<a class="headerlink" href="#yield-surface" title="Permalink to this heading">#</a></h2>
+<p><span class="math notranslate nohighlight">\(f = \left|\eta - \alpha\right| - m\)</span></p>
+<p><span class="math notranslate nohighlight">\(\eta = \frac{q}{p}\)</span></p>
+<p><span class="math notranslate nohighlight">\(\alpha\)</span> = back-stress ratio</p>
+<p><span class="math notranslate nohighlight">\(m\)</span> = yield stress ratio</p>
+</section>
+<section id="elasticity">
+<h2>Elasticity<a class="headerlink" href="#elasticity" title="Permalink to this heading">#</a></h2>
+<p><span class="math notranslate nohighlight">\(\dot{q} = 3G\dot{\varepsilon_q^e}\)</span></p>
+<p><span class="math notranslate nohighlight">\(\dot{p} = K\dot{\varepsilon_v^e}\)</span></p>
+<p><span class="math notranslate nohighlight">\(G = G_0p_a\frac{\left(2.97-e\right)^2}{1+e}\left(\frac{p}{p_a}\right)^{1/2}\)</span></p>
+<p><span class="math notranslate nohighlight">\(G_0\)</span> = constant</p>
+<p><span class="math notranslate nohighlight">\(K = \frac{2\left(1+\nu\right)}{3\left(1-2\nu\right)}G\)</span></p>
+</section>
+<section id="flow-rule">
+<h2>Flow Rule<a class="headerlink" href="#flow-rule" title="Permalink to this heading">#</a></h2>
+<p><span class="math notranslate nohighlight">\(\dot{\eta} = H\dot{\varepsilon_q^p}\)</span></p>
+<p><span class="math notranslate nohighlight">\(\dot{\varepsilon_v^p} = d\left|\dot{\varepsilon_q^p}\right|\)</span></p>
+<p><span class="math notranslate nohighlight">\(d = A_d\left(M^d - \eta\right)\)</span>  = dilatancy</p>
+<p><span class="math notranslate nohighlight">\(dz = -c_z\left&lt;-\dot{\varepsilon_v^p}\right&gt;\left(s\cdot z_{max} + z\right)\)</span></p>
+<p><span class="math notranslate nohighlight">\(A_d = A_0\left(1+\left&lt;sz\right&gt;\right)\)</span></p>
+<p><span class="math notranslate nohighlight">\(M^d = M exp\left(n^d\psi\right)\)</span>  = dilation surface</p>
+<p><span class="math notranslate nohighlight">\(\psi = e - e_c\)</span></p>
+<p><span class="math notranslate nohighlight">\(e_c = e_0 - \lambda_c\left(p/p_a\right)^\xi\)</span></p>
+<p>MacCaulay brackets <span class="math notranslate nohighlight">\(\left&lt; \right&gt;\)</span> operate according to <span class="math notranslate nohighlight">\(\left&lt;x\right&gt; = x\)</span> if <span class="math notranslate nohighlight">\(x&gt;0\)</span> and <span class="math notranslate nohighlight">\(\left&lt;x\right&gt; =0\)</span> if <span class="math notranslate nohighlight">\(x \leq 0\)</span></p>
+<p><span class="math notranslate nohighlight">\(s = \pm 1\)</span> according to <span class="math notranslate nohighlight">\(\eta = \alpha \pm m\)</span> (i.e., <span class="math notranslate nohighlight">\(s=+1\)</span> if <span class="math notranslate nohighlight">\(\dot{\eta}&gt;0\)</span> and <span class="math notranslate nohighlight">\(s=-1\)</span> if <span class="math notranslate nohighlight">\(\dot{\eta}&lt;0\)</span>).</p>
+</section>
+<section id="hardening">
+<h2>Hardening<a class="headerlink" href="#hardening" title="Permalink to this heading">#</a></h2>
+<p><span class="math notranslate nohighlight">\(H = h\left(M^b - \eta\right)\)</span></p>
+<p><span class="math notranslate nohighlight">\(h = \frac{b_0}{\left|\eta-\eta_{in}\right|}\)</span></p>
+<p><span class="math notranslate nohighlight">\(b_0 = G_0h_0\left(1-c_he\right)\left(\frac{p}{p_a}\right)^{-1/2}\)</span></p>
+<p><span class="math notranslate nohighlight">\(M^b = M exp\left(-n^b\psi\right)\)</span> = bounding surface stress ratio</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%html</span>
+<span class="p">&lt;</span><span class="nt">style</span><span class="p">&gt;</span>
+<span class="nt">table</span><span class="w"> </span><span class="p">{</span><span class="k">float</span><span class="p">:</span><span class="kc">left</span><span class="p">}</span>
+<span class="p">&lt;/</span><span class="nt">style</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><style>
+table {float:left}
+</style>
+</div></div>
+</div>
+</section>
+<section id="model-constants">
+<h2>Model Constants<a class="headerlink" href="#model-constants" title="Permalink to this heading">#</a></h2>
+<p>A set of default material constants was provided in the paper, as summarized below.</p>
+<table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Constant</p></th>
+<th class="head"><p>Variable</p></th>
+<th class="head"><p>Default Value</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Elasticity</p></td>
+<td><p><span class="math notranslate nohighlight">\(G_0\)</span></p></td>
+<td><p>125</p></td>
+</tr>
+<tr class="row-odd"><td><p></p></td>
+<td><p><span class="math notranslate nohighlight">\(\nu\)</span></p></td>
+<td><p>0.05</p></td>
+</tr>
+<tr class="row-even"><td><p>Critical State</p></td>
+<td><p><span class="math notranslate nohighlight">\(M\)</span></p></td>
+<td><p>1.25</p></td>
+</tr>
+<tr class="row-odd"><td><p></p></td>
+<td><p><span class="math notranslate nohighlight">\(c\)</span></p></td>
+<td><p>0.712</p></td>
+</tr>
+<tr class="row-even"><td><p></p></td>
+<td><p><span class="math notranslate nohighlight">\(\lambda_c\)</span></p></td>
+<td><p>0.019</p></td>
+</tr>
+<tr class="row-odd"><td><p></p></td>
+<td><p><span class="math notranslate nohighlight">\(e_0\)</span></p></td>
+<td><p>0.934</p></td>
+</tr>
+<tr class="row-even"><td><p></p></td>
+<td><p><span class="math notranslate nohighlight">\(\xi\)</span></p></td>
+<td><p>0.7</p></td>
+</tr>
+<tr class="row-odd"><td><p>Yield Surface</p></td>
+<td><p><span class="math notranslate nohighlight">\(m\)</span></p></td>
+<td><p>0.01</p></td>
+</tr>
+<tr class="row-even"><td><p>Plastic Modulus</p></td>
+<td><p><span class="math notranslate nohighlight">\(h_0\)</span></p></td>
+<td><p>7.05</p></td>
+</tr>
+<tr class="row-odd"><td><p></p></td>
+<td><p><span class="math notranslate nohighlight">\(c_h\)</span></p></td>
+<td><p>0.968</p></td>
+</tr>
+<tr class="row-even"><td><p></p></td>
+<td><p><span class="math notranslate nohighlight">\(n^b\)</span></p></td>
+<td><p>1.1</p></td>
+</tr>
+<tr class="row-odd"><td><p>Dilatancy</p></td>
+<td><p><span class="math notranslate nohighlight">\(A_0\)</span></p></td>
+<td><p>0.704</p></td>
+</tr>
+<tr class="row-even"><td><p></p></td>
+<td><p><span class="math notranslate nohighlight">\(n^d\)</span></p></td>
+<td><p>3.5</p></td>
+</tr>
+<tr class="row-odd"><td><p>Fabric-Dilatancy Tensor</p></td>
+<td><p><span class="math notranslate nohighlight">\(z_{max}\)</span></p></td>
+<td><p>4</p></td>
+</tr>
+<tr class="row-even"><td><p></p></td>
+<td><p><span class="math notranslate nohighlight">\(c_z\)</span></p></td>
+<td><p>600</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="explicit-integration-solution">
+<h1>Explicit Integration Solution<a class="headerlink" href="#explicit-integration-solution" title="Permalink to this heading">#</a></h1>
+<p>Implicit integration is very difficult for this model, so we will use explicit integration instead. This means we will use the values of internal variables at the start of the current increment to compute their values at the end of the increment. Explicit procedures are numerically unstable, and require very small strain increments to produce a solution. Also, we will assume the elastic properties are constant for the strain increment to simplify the solution.</p>
+<p>The solution may be simplified by making a few adjustments to the yield function.</p>
+<p><span class="math notranslate nohighlight">\(f = \left|\frac{q}{p} - \alpha\right| - m\)</span></p>
+<p>Multiply by sign function to get rid of absolute values</p>
+<p><span class="math notranslate nohighlight">\(f = \left(\frac{q}{p} - \alpha\right)s - m\)</span></p>
+<p>where <span class="math notranslate nohighlight">\(s = sign\left(\frac{q}{p} - \alpha\right) = sign\left(q - p\alpha\right)\)</span></p>
+<p>Multiply by p.</p>
+<p><span class="math notranslate nohighlight">\(f\cdot p = \left(q - \alpha p\right)s - mp\)</span></p>
+<p>Since <span class="math notranslate nohighlight">\(f = 0\)</span>, and <span class="math notranslate nohighlight">\(p\)</span> is positive, we can drop the <span class="math notranslate nohighlight">\(p\)</span> from the left side</p>
+<p><span class="math notranslate nohighlight">\(f = \left(q - \alpha p\right)s - mp\)</span></p>
+<p><span class="math notranslate nohighlight">\(f = qs - p\left(\alpha s + m\right)\)</span></p>
+<p>Now implement solution to solve for <span class="math notranslate nohighlight">\(\Delta\gamma\)</span></p>
+<p><span class="math notranslate nohighlight">\(q^{trial} = q_i + 3G\dot{\varepsilon}_q\)</span><br />
+<span class="math notranslate nohighlight">\(p^{trial} = p_i + K\dot{\varepsilon}_v\)</span><br />
+<span class="math notranslate nohighlight">\(\alpha^{trial} = \alpha_i\)</span><br />
+<span class="math notranslate nohighlight">\(f_{trial} = q^{trial}s - p^{trial}\left(\alpha^{trial}s + m\right)\)</span></p>
+<p><span class="math notranslate nohighlight">\(if\left(f_{trial} \le 0\right)\)</span></p>
+<blockquote>
+<div><p><span class="math notranslate nohighlight">\(q_{i+1} = q^{trial}\)</span><br />
+<span class="math notranslate nohighlight">\(p_{i+1} = p^{trial}\)</span><br />
+<span class="math notranslate nohighlight">\(\alpha_{i+1} = \alpha^{trial}\)</span></p>
+</div></blockquote>
+<p><span class="math notranslate nohighlight">\(else\)</span></p>
+<blockquote>
+<div><p><span class="math notranslate nohighlight">\(\dot{\varepsilon}_q^p = \Delta\gamma\frac{\partial f}{\partial q} = \Delta\gamma s\)</span><br />
+<span class="math notranslate nohighlight">\(q_{i+1} = q_i + 3G_i\left(\dot{\varepsilon}_q - \dot{\varepsilon}_q^p\right) = q^{trial} -3G_i\Delta\gamma s\)</span><br />
+<span class="math notranslate nohighlight">\(p_{i+1} = p_i + K_i\left(\dot{\varepsilon}_v - \dot{\varepsilon}_v^p\right) = p^{trial} -K_id\left|\Delta\gamma s\right|\)</span><br />
+<span class="math notranslate nohighlight">\(\alpha_{i+1} = \alpha_i + H_i\dot{\varepsilon}_q^p = \alpha^{trial} + H_i\Delta\gamma s\)</span><br />
+<span class="math notranslate nohighlight">\(f = 0 = \left(q^{trial} -3G_i\Delta\gamma s\right)s - \left(p^{trial} -K_id\left|\Delta\gamma s\right|\right)\left(\left(\alpha^{trial} + H_i\Delta\gamma s\right)s + m\right)\)</span></p>
+</div></blockquote>
+<blockquote>
+<div><p>Note that the direction of <span class="math notranslate nohighlight">\(\dot{\varepsilon}_q^p\)</span> must be the same as the loading direction, <span class="math notranslate nohighlight">\(s\)</span>. Therefore <span class="math notranslate nohighlight">\(\left|\Delta\gamma s\right| = \Delta\gamma s\)</span>. Also <span class="math notranslate nohighlight">\(s^2 = 1\)</span><br />
+<span class="math notranslate nohighlight">\(f = 0 = q^{trial}s -3G_i\Delta\gamma - \left(p^{trial} -K_id\Delta\gamma s\right)\left(\alpha^{trial}s + H_i\Delta\gamma +m\right)\)</span></p>
+</div></blockquote>
+<blockquote>
+<div><p>Expanding<br />
+<span class="math notranslate nohighlight">\(f = 0 = q^{trial}s - p^{trial}\left(\alpha^{trial}s + m\right) -3G_i\Delta\gamma - p^{trial}H_i\Delta\gamma +K_id\Delta\gamma\alpha^{trial} + K_idsH_i\Delta\gamma^2 + K_idms\Delta\gamma\)</span></p>
+</div></blockquote>
+<blockquote>
+<div><p>Collecting terms, we obtain the following quadratic expression for <span class="math notranslate nohighlight">\(\Delta\gamma\)</span><br />
+<span class="math notranslate nohighlight">\(f = 0 = f^{trial} + \Delta\gamma\left[K_id\left(\alpha^{trial} + ms\right) -3G_i - p^{trial}H_i \right] + \Delta\gamma^2K_idsH_i\)</span></p>
+</div></blockquote>
+<blockquote>
+<div><p>Solving for the physically meaningful root<br />
+<span class="math notranslate nohighlight">\(\Delta\gamma = \frac{-b - \sqrt{b^2 - 4ac}}{2a}\)</span></p>
+</div></blockquote>
+<blockquote>
+<div><p>Where<br />
+<span class="math notranslate nohighlight">\(a = K_idsH_i\)</span><br />
+<span class="math notranslate nohighlight">\(b = K_id\left(\alpha^{trial} + ms\right) -3G_i - p^{trial}H_i\)</span><br />
+<span class="math notranslate nohighlight">\(c = f^{trial}\)</span></p>
+</div></blockquote>
+<blockquote>
+<div><p>And then update internal variables<br />
+<span class="math notranslate nohighlight">\(q_{i+1} = q^{trial} -3G_i\Delta\gamma\)</span><br />
+<span class="math notranslate nohighlight">\(p_{i+1} = p^{trial} -K_id\left|\Delta\gamma\right|\)</span><br />
+<span class="math notranslate nohighlight">\(\eta_{i+1} = \frac{q_{i+1}}{p_{i+1}}\)</span><br />
+<span class="math notranslate nohighlight">\(\alpha_{i+1} = \alpha_i + H\Delta\gamma\)</span>  (note, H = infinity for the first step in current plastic loading cycle, in which case <span class="math notranslate nohighlight">\(\alpha_{i+1} = \alpha_i\)</span>)<br />
+<span class="math notranslate nohighlight">\(\eta_{in} = \alpha_i + ms\)</span> (if plastic loading direction is new)<br />
+<span class="math notranslate nohighlight">\(b_0 = G_0h_0\left(1-c_he\right)\left(\frac{p_{i+1}}{p_a}\right)^{-0.5}\)</span><br />
+<span class="math notranslate nohighlight">\(h = \frac{b_0}{\left|\eta_{i+1} - \eta_{in}\right|}\)</span>  (note, if <span class="math notranslate nohighlight">\(\eta_{i+1} = \eta_{in}\)</span>, h = infinity. must catch this runtime error)<br />
+<span class="math notranslate nohighlight">\(\psi = e - \left(e_0 - \lambda_c\left(\frac{p_{i+1}}{p_a}\right)^\xi\right)\)</span><br />
+<span class="math notranslate nohighlight">\(M^b = Mexp\left(-n^b\psi\right)\)</span><br />
+<span class="math notranslate nohighlight">\(M^d = Mexp\left(n^d\psi\right)\)</span><br />
+<span class="math notranslate nohighlight">\(H = h\left(M^b-s\eta_{i+1}\right)\)</span><br />
+<span class="math notranslate nohighlight">\(dz = -c_z\left&lt;-\Delta\gamma\right&gt;\left(sz_{max} + z\right)\)</span><br />
+<span class="math notranslate nohighlight">\(A_d = A_0\left(1+\left&lt;sz\right&gt;\right)\)</span><br />
+<span class="math notranslate nohighlight">\(d = A_d\left(M^d - s\eta_{i+1}\right)\)</span><br />
+<span class="math notranslate nohighlight">\(e = e - \varepsilon_v\left(1+e\right)\)</span></p>
+</div></blockquote>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">math</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">dafalias_manzari_strain_control</span><span class="p">(</span><span class="n">G0</span><span class="p">,</span><span class="n">nu</span><span class="p">,</span><span class="n">M</span><span class="p">,</span><span class="n">c</span><span class="p">,</span><span class="n">lambda_c</span><span class="p">,</span><span class="n">e0</span><span class="p">,</span><span class="n">e</span><span class="p">,</span><span class="n">xi</span><span class="p">,</span><span class="n">m</span><span class="p">,</span><span class="n">h0</span><span class="p">,</span><span class="n">ch</span><span class="p">,</span><span class="n">nb</span><span class="p">,</span><span class="n">A0</span><span class="p">,</span><span class="n">nd</span><span class="p">,</span><span class="n">zmax</span><span class="p">,</span><span class="n">cz</span><span class="p">,</span><span class="n">pa</span><span class="p">,</span><span class="n">z</span><span class="p">,</span><span class="n">p0</span><span class="p">,</span><span class="n">q0</span><span class="p">,</span><span class="n">epsilon_q</span><span class="p">,</span><span class="n">epsilon_v</span><span class="p">):</span>
+    <span class="n">N</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">epsilon_q</span><span class="p">)</span>
+    <span class="c1"># Initialize arrays to 0</span>
+    <span class="n">p</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">N</span><span class="p">)</span>
+    <span class="n">q</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">N</span><span class="p">)</span>
+    <span class="n">p</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">p0</span>
+    <span class="n">q</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">q0</span>
+    <span class="n">G</span> <span class="o">=</span> <span class="n">G0</span><span class="o">*</span><span class="n">pa</span><span class="o">*</span><span class="p">(</span><span class="mf">2.97</span><span class="o">-</span><span class="n">e</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="o">/</span><span class="p">(</span><span class="mi">1</span><span class="o">+</span><span class="n">e</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">p</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">/</span><span class="n">pa</span><span class="p">)</span><span class="o">**</span><span class="mf">0.5</span>
+    <span class="n">K</span> <span class="o">=</span> <span class="mi">2</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">+</span><span class="n">nu</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="mi">3</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="mi">2</span><span class="o">*</span><span class="n">nu</span><span class="p">))</span>
+    <span class="n">E</span> <span class="o">=</span> <span class="mi">2</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">+</span><span class="n">nu</span><span class="p">)</span><span class="o">*</span><span class="n">G</span>
+    <span class="n">eta</span> <span class="o">=</span> <span class="n">q</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">/</span><span class="n">p</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">depsilon_qp</span> <span class="o">=</span> <span class="mf">0.0</span>
+    <span class="n">depsilon_vp</span> <span class="o">=</span> <span class="mf">0.0</span>
+    <span class="n">eta_in</span> <span class="o">=</span> <span class="n">m</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">sign</span><span class="p">(</span><span class="n">epsilon_q</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">epsilon_q</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+    <span class="n">alpha</span> <span class="o">=</span> <span class="mf">0.0</span>
+    <span class="n">SIGN</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">d</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">H</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">inf</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">N</span><span class="p">,</span><span class="mi">1</span><span class="p">):</span>
+        <span class="n">depsilon_q</span> <span class="o">=</span> <span class="n">epsilon_q</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">-</span> <span class="n">epsilon_q</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+        <span class="n">depsilon_v</span> <span class="o">=</span> <span class="n">epsilon_v</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">-</span> <span class="n">epsilon_v</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+        <span class="n">G</span> <span class="o">=</span> <span class="n">G0</span><span class="o">*</span><span class="n">pa</span><span class="o">*</span><span class="p">(</span><span class="mf">2.97</span><span class="o">-</span><span class="n">e</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="o">/</span><span class="p">(</span><span class="mi">1</span><span class="o">+</span><span class="n">e</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">p</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">/</span><span class="n">pa</span><span class="p">)</span><span class="o">**</span><span class="mf">0.5</span>
+        <span class="n">K</span> <span class="o">=</span> <span class="mi">2</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">+</span><span class="n">nu</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="mi">3</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="mi">2</span><span class="o">*</span><span class="n">nu</span><span class="p">))</span><span class="o">*</span><span class="n">G</span>
+        <span class="n">q_trial</span> <span class="o">=</span> <span class="n">q</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="mi">3</span><span class="o">*</span><span class="n">G</span><span class="o">*</span><span class="n">depsilon_q</span>
+        <span class="n">p_trial</span> <span class="o">=</span> <span class="n">p</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">K</span><span class="o">*</span><span class="n">depsilon_v</span>
+        <span class="n">alpha_trial</span> <span class="o">=</span> <span class="n">alpha</span>
+        <span class="n">s</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sign</span><span class="p">(</span><span class="n">q_trial</span> <span class="o">-</span> <span class="n">p_trial</span><span class="o">*</span><span class="n">alpha_trial</span><span class="p">)</span>
+        <span class="n">f_trial</span> <span class="o">=</span> <span class="n">q_trial</span><span class="o">*</span><span class="n">s</span> <span class="o">-</span> <span class="n">p_trial</span><span class="o">*</span><span class="p">(</span><span class="n">alpha_trial</span><span class="o">*</span><span class="n">s</span> <span class="o">+</span> <span class="n">m</span><span class="p">)</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">f_trial</span><span class="o">&lt;</span><span class="mi">0</span><span class="p">):</span>
+            <span class="n">depsilon_qp</span> <span class="o">=</span> <span class="mf">0.0</span>
+            <span class="n">depsilon_vp</span> <span class="o">=</span> <span class="mf">0.0</span>
+            <span class="n">p</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">p_trial</span>
+            <span class="n">q</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">q_trial</span>
+            <span class="n">H</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">inf</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">if</span><span class="p">(</span><span class="n">H</span> <span class="o">==</span> <span class="n">math</span><span class="o">.</span><span class="n">inf</span><span class="p">):</span>
+                <span class="n">dgamma</span> <span class="o">=</span> <span class="mf">0.0</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">a</span> <span class="o">=</span> <span class="n">K</span><span class="o">*</span><span class="n">d</span><span class="o">*</span><span class="n">s</span><span class="o">*</span><span class="n">H</span>
+                <span class="n">b</span> <span class="o">=</span> <span class="n">K</span><span class="o">*</span><span class="n">d</span><span class="o">*</span><span class="p">(</span><span class="n">alpha_trial</span> <span class="o">+</span> <span class="n">m</span><span class="o">*</span><span class="n">s</span><span class="p">)</span> <span class="o">-</span> <span class="n">H</span><span class="o">*</span><span class="n">p_trial</span> <span class="o">-</span> <span class="mi">3</span><span class="o">*</span><span class="n">G</span>
+                <span class="n">c</span> <span class="o">=</span> <span class="n">f_trial</span>
+                <span class="n">dgamma</span> <span class="o">=</span> <span class="p">(</span><span class="o">-</span><span class="n">b</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">b</span><span class="o">**</span><span class="mi">2</span><span class="o">-</span><span class="mi">4</span><span class="o">*</span><span class="n">a</span><span class="o">*</span><span class="n">c</span><span class="p">))</span><span class="o">/</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">a</span><span class="p">)</span>
+            <span class="n">depsilon_qp</span> <span class="o">=</span> <span class="n">dgamma</span><span class="o">*</span><span class="n">s</span>
+            <span class="n">depsilon_vp</span> <span class="o">=</span> <span class="n">d</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">depsilon_qp</span><span class="p">)</span>
+            <span class="n">p</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">p</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">K</span><span class="o">*</span><span class="p">(</span><span class="n">depsilon_v</span> <span class="o">-</span> <span class="n">depsilon_vp</span><span class="p">)</span>
+            <span class="n">q</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">q</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="mi">3</span><span class="o">*</span><span class="n">G</span><span class="o">*</span><span class="p">(</span><span class="n">depsilon_q</span> <span class="o">-</span> <span class="n">depsilon_qp</span><span class="p">)</span>
+            
+            <span class="n">eta</span> <span class="o">=</span> <span class="n">q</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">/</span><span class="n">p</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+            <span class="k">if</span><span class="p">(</span><span class="n">s</span> <span class="o">!=</span> <span class="n">SIGN</span><span class="p">):</span>
+                <span class="n">eta_in</span> <span class="o">=</span> <span class="n">alpha</span> <span class="o">+</span> <span class="n">m</span><span class="o">*</span><span class="n">s</span>
+                <span class="n">SIGN</span> <span class="o">=</span> <span class="n">s</span>
+            <span class="n">b0</span> <span class="o">=</span> <span class="n">G0</span><span class="o">*</span><span class="n">h0</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">ch</span><span class="o">*</span><span class="n">e</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">p</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">/</span><span class="n">pa</span><span class="p">)</span><span class="o">**-</span><span class="mf">0.5</span>
+            <span class="k">if</span><span class="p">(</span><span class="n">eta</span><span class="o">==</span><span class="n">eta_in</span><span class="p">):</span>
+                <span class="n">depsilon_qp</span> <span class="o">=</span> <span class="mf">0.0</span>
+                <span class="n">depsilon_vp</span> <span class="o">=</span> <span class="mf">0.0</span>
+                <span class="k">continue</span>
+            <span class="n">h</span> <span class="o">=</span> <span class="n">b0</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">eta</span><span class="o">-</span><span class="n">eta_in</span><span class="p">)</span>
+            <span class="n">psi</span> <span class="o">=</span> <span class="n">e</span> <span class="o">-</span> <span class="p">(</span><span class="n">e0</span> <span class="o">-</span> <span class="n">lambda_c</span><span class="o">*</span><span class="p">(</span><span class="n">p</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">/</span><span class="n">pa</span><span class="p">)</span><span class="o">**</span><span class="n">xi</span><span class="p">)</span>
+            <span class="n">Mb</span> <span class="o">=</span> <span class="n">M</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">nb</span><span class="o">*</span><span class="n">psi</span><span class="p">)</span>
+            <span class="n">Md</span> <span class="o">=</span> <span class="n">M</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">nd</span><span class="o">*</span><span class="n">psi</span><span class="p">)</span>
+            <span class="n">H</span> <span class="o">=</span> <span class="n">h</span><span class="o">*</span><span class="p">(</span><span class="n">Mb</span> <span class="o">-</span> <span class="n">eta</span><span class="o">*</span><span class="n">s</span><span class="p">)</span>       
+            <span class="n">alpha</span> <span class="o">=</span> <span class="n">alpha</span> <span class="o">+</span> <span class="n">H</span><span class="o">*</span><span class="n">depsilon_qp</span>
+            <span class="k">if</span><span class="p">(</span><span class="o">-</span><span class="n">depsilon_vp</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">):</span>
+                <span class="n">dz</span> <span class="o">=</span> <span class="n">cz</span><span class="o">*</span><span class="n">depsilon_vp</span><span class="o">*</span><span class="p">(</span><span class="n">s</span><span class="o">*</span><span class="n">zmax</span> <span class="o">+</span> <span class="n">z</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">dz</span> <span class="o">=</span> <span class="mi">0</span>
+            <span class="n">z</span> <span class="o">=</span> <span class="n">z</span><span class="o">+</span><span class="n">dz</span>
+            <span class="k">if</span><span class="p">(</span><span class="n">s</span><span class="o">*</span><span class="n">z</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">):</span>
+                <span class="n">Ad</span> <span class="o">=</span> <span class="n">A0</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">+</span><span class="n">s</span><span class="o">*</span><span class="n">z</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">Ad</span> <span class="o">=</span> <span class="n">A0</span>
+            <span class="n">d</span> <span class="o">=</span> <span class="n">Ad</span><span class="o">*</span><span class="p">(</span><span class="n">Md</span> <span class="o">-</span> <span class="n">eta</span><span class="o">*</span><span class="n">s</span><span class="p">)</span>
+        <span class="n">e</span> <span class="o">=</span> <span class="n">e</span> <span class="o">-</span> <span class="n">depsilon_v</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">+</span><span class="n">e</span><span class="p">)</span>
+    <span class="k">return</span><span class="p">([</span><span class="n">q</span><span class="p">,</span><span class="n">p</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="reproduce-figure-5">
+<h1>Reproduce Figure 5<a class="headerlink" href="#reproduce-figure-5" title="Permalink to this heading">#</a></h1>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">G0</span> <span class="o">=</span> <span class="mi">125</span>
+<span class="n">nu</span> <span class="o">=</span> <span class="mf">0.05</span>
+<span class="n">M</span> <span class="o">=</span> <span class="mf">1.25</span>
+<span class="n">c</span> <span class="o">=</span> <span class="mf">0.712</span>
+<span class="n">lambda_c</span> <span class="o">=</span> <span class="mf">0.019</span>
+<span class="n">e0</span> <span class="o">=</span> <span class="mf">0.934</span>
+<span class="n">e</span> <span class="o">=</span> <span class="mf">0.735</span>
+<span class="n">xi</span> <span class="o">=</span> <span class="mf">0.7</span>
+<span class="n">m</span> <span class="o">=</span> <span class="mf">0.01</span>
+<span class="n">h0</span> <span class="o">=</span> <span class="mf">7.05</span>
+<span class="n">ch</span> <span class="o">=</span> <span class="mf">0.968</span>
+<span class="n">nb</span> <span class="o">=</span> <span class="mf">1.1</span>
+<span class="n">A0</span> <span class="o">=</span> <span class="mf">0.704</span>
+<span class="n">nd</span> <span class="o">=</span> <span class="mf">3.5</span>
+<span class="n">zmax</span> <span class="o">=</span> <span class="mf">4.0</span>
+<span class="n">cz</span> <span class="o">=</span> <span class="mi">600</span>
+<span class="n">pa</span> <span class="o">=</span> <span class="mf">101.325</span>
+<span class="n">z</span> <span class="o">=</span> <span class="mf">0.0</span>
+<span class="n">p0</span> <span class="o">=</span> <span class="p">[</span><span class="mi">100</span><span class="p">,</span> <span class="mi">1000</span><span class="p">,</span> <span class="mi">2000</span><span class="p">,</span> <span class="mi">3000</span><span class="p">]</span>
+<span class="n">q0</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>
+<span class="n">N</span> <span class="o">=</span> <span class="mi">10000</span>
+<span class="n">epsilon_q</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mf">0.25</span><span class="p">,</span><span class="n">N</span><span class="p">)</span>
+<span class="n">epsilon_v</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">N</span><span class="p">)</span>
+<span class="n">q</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">p</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">p0</span><span class="p">)):</span>
+    <span class="n">q_temp</span><span class="p">,</span> <span class="n">p_temp</span> <span class="o">=</span> <span class="n">dafalias_manzari_strain_control</span><span class="p">(</span><span class="n">G0</span><span class="p">,</span><span class="n">nu</span><span class="p">,</span><span class="n">M</span><span class="p">,</span><span class="n">c</span><span class="p">,</span><span class="n">lambda_c</span><span class="p">,</span><span class="n">e0</span><span class="p">,</span><span class="n">e</span><span class="p">,</span><span class="n">xi</span><span class="p">,</span><span class="n">m</span><span class="p">,</span><span class="n">h0</span><span class="p">,</span><span class="n">ch</span><span class="p">,</span><span class="n">nb</span><span class="p">,</span><span class="n">A0</span><span class="p">,</span><span class="n">nd</span><span class="p">,</span><span class="n">zmax</span><span class="p">,</span><span class="n">cz</span><span class="p">,</span><span class="n">pa</span><span class="p">,</span><span class="n">z</span><span class="p">,</span><span class="n">p0</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="n">q0</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="n">epsilon_q</span><span class="p">,</span><span class="n">epsilon_v</span><span class="p">)</span>
+    <span class="n">q</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">q_temp</span><span class="p">)</span>
+    <span class="n">p</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">p_temp</span><span class="p">)</span>
+    
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">nrows</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="mi">6</span><span class="p">))</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">p0</span><span class="p">)):</span>
+    <span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">p</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="n">q</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+    <span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">epsilon_q</span><span class="p">,</span><span class="n">q</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">,</span><span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">,</span><span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;p&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;q&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$\varepsilon_q$&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;q&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/978dd1e485697e1ee0b545ac47ee500440978510026b8fa80ba5b86a26a34e74.png" src="_images/978dd1e485697e1ee0b545ac47ee500440978510026b8fa80ba5b86a26a34e74.png" />
+</div>
+</div>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="reproduce-figure-6">
+<h1>Reproduce Figure 6<a class="headerlink" href="#reproduce-figure-6" title="Permalink to this heading">#</a></h1>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">G0</span> <span class="o">=</span> <span class="mi">125</span>
+<span class="n">nu</span> <span class="o">=</span> <span class="mf">0.05</span>
+<span class="n">M</span> <span class="o">=</span> <span class="mf">1.25</span>
+<span class="n">c</span> <span class="o">=</span> <span class="mf">0.712</span>
+<span class="n">lambda_c</span> <span class="o">=</span> <span class="mf">0.019</span>
+<span class="n">e0</span> <span class="o">=</span> <span class="mf">0.934</span>
+<span class="n">e</span> <span class="o">=</span> <span class="mf">0.833</span>
+<span class="n">xi</span> <span class="o">=</span> <span class="mf">0.7</span>
+<span class="n">m</span> <span class="o">=</span> <span class="mf">0.01</span>
+<span class="n">h0</span> <span class="o">=</span> <span class="mf">7.05</span>
+<span class="n">ch</span> <span class="o">=</span> <span class="mf">0.968</span>
+<span class="n">nb</span> <span class="o">=</span> <span class="mf">1.1</span>
+<span class="n">A0</span> <span class="o">=</span> <span class="mf">0.704</span>
+<span class="n">nd</span> <span class="o">=</span> <span class="mf">3.5</span>
+<span class="n">zmax</span> <span class="o">=</span> <span class="mf">4.0</span>
+<span class="n">cz</span> <span class="o">=</span> <span class="mi">600</span>
+<span class="n">pa</span> <span class="o">=</span> <span class="mf">101.325</span>
+<span class="n">z</span> <span class="o">=</span> <span class="mf">0.0</span>
+<span class="n">p0</span> <span class="o">=</span> <span class="p">[</span><span class="mi">100</span><span class="p">,</span> <span class="mi">1000</span><span class="p">,</span> <span class="mi">2000</span><span class="p">,</span> <span class="mi">3000</span><span class="p">]</span>
+<span class="n">q0</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>
+<span class="n">N</span> <span class="o">=</span> <span class="mi">10000</span>
+<span class="n">epsilon_q</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mf">0.25</span><span class="p">,</span><span class="n">N</span><span class="p">)</span>
+<span class="n">epsilon_v</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">N</span><span class="p">)</span>
+<span class="n">q</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">p</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">p0</span><span class="p">)):</span>
+    <span class="n">q_temp</span><span class="p">,</span> <span class="n">p_temp</span> <span class="o">=</span> <span class="n">dafalias_manzari_strain_control</span><span class="p">(</span><span class="n">G0</span><span class="p">,</span><span class="n">nu</span><span class="p">,</span><span class="n">M</span><span class="p">,</span><span class="n">c</span><span class="p">,</span><span class="n">lambda_c</span><span class="p">,</span><span class="n">e0</span><span class="p">,</span><span class="n">e</span><span class="p">,</span><span class="n">xi</span><span class="p">,</span><span class="n">m</span><span class="p">,</span><span class="n">h0</span><span class="p">,</span><span class="n">ch</span><span class="p">,</span><span class="n">nb</span><span class="p">,</span><span class="n">A0</span><span class="p">,</span><span class="n">nd</span><span class="p">,</span><span class="n">zmax</span><span class="p">,</span><span class="n">cz</span><span class="p">,</span><span class="n">pa</span><span class="p">,</span><span class="n">z</span><span class="p">,</span><span class="n">p0</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="n">q0</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="n">epsilon_q</span><span class="p">,</span><span class="n">epsilon_v</span><span class="p">)</span>
+    <span class="n">q</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">q_temp</span><span class="p">)</span>
+    <span class="n">p</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">p_temp</span><span class="p">)</span>
+    
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">nrows</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="mi">6</span><span class="p">))</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">p0</span><span class="p">)):</span>
+    <span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">p</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="n">q</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+    <span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">epsilon_q</span><span class="p">,</span><span class="n">q</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">,</span><span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">,</span><span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;p&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;q&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$\varepsilon_q$&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;q&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/9565b9b5dc62a01bd1e6aa30de6e07e15dccd936de05f42b1a6a64333c2c7812.png" src="_images/9565b9b5dc62a01bd1e6aa30de6e07e15dccd936de05f42b1a6a64333c2c7812.png" />
+</div>
+</div>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="reproduce-figure-7">
+<h1>Reproduce Figure 7<a class="headerlink" href="#reproduce-figure-7" title="Permalink to this heading">#</a></h1>
+<p>Note: it appears that Figure 7 in the paper has the incorrect plot of deviatoric stress vs. axial strain. It is a replica of the same plot from Fig. 6.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">G0</span> <span class="o">=</span> <span class="mi">125</span>
+<span class="n">nu</span> <span class="o">=</span> <span class="mf">0.05</span>
+<span class="n">M</span> <span class="o">=</span> <span class="mf">1.25</span>
+<span class="n">c</span> <span class="o">=</span> <span class="mf">0.712</span>
+<span class="n">lambda_c</span> <span class="o">=</span> <span class="mf">0.019</span>
+<span class="n">e0</span> <span class="o">=</span> <span class="mf">0.934</span>
+<span class="n">e</span> <span class="o">=</span> <span class="mf">0.907</span>
+<span class="n">xi</span> <span class="o">=</span> <span class="mf">0.7</span>
+<span class="n">m</span> <span class="o">=</span> <span class="mf">0.01</span>
+<span class="n">h0</span> <span class="o">=</span> <span class="mf">7.05</span>
+<span class="n">ch</span> <span class="o">=</span> <span class="mf">0.968</span>
+<span class="n">nb</span> <span class="o">=</span> <span class="mf">1.1</span>
+<span class="n">A0</span> <span class="o">=</span> <span class="mf">0.704</span>
+<span class="n">nd</span> <span class="o">=</span> <span class="mf">3.5</span>
+<span class="n">zmax</span> <span class="o">=</span> <span class="mf">4.0</span>
+<span class="n">cz</span> <span class="o">=</span> <span class="mi">600</span>
+<span class="n">pa</span> <span class="o">=</span> <span class="mf">101.325</span>
+<span class="n">z</span> <span class="o">=</span> <span class="mf">0.0</span>
+<span class="n">p0</span> <span class="o">=</span> <span class="p">[</span><span class="mi">100</span><span class="p">,</span> <span class="mi">1000</span><span class="p">,</span> <span class="mi">2000</span><span class="p">,</span> <span class="mi">3000</span><span class="p">]</span>
+<span class="n">q0</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>
+<span class="n">N</span> <span class="o">=</span> <span class="mi">10000</span>
+<span class="n">epsilon_q</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mf">0.25</span><span class="p">,</span><span class="n">N</span><span class="p">)</span>
+<span class="n">epsilon_v</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">N</span><span class="p">)</span>
+<span class="n">q</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">p</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">p0</span><span class="p">)):</span>
+    <span class="n">q_temp</span><span class="p">,</span> <span class="n">p_temp</span> <span class="o">=</span> <span class="n">dafalias_manzari_strain_control</span><span class="p">(</span><span class="n">G0</span><span class="p">,</span><span class="n">nu</span><span class="p">,</span><span class="n">M</span><span class="p">,</span><span class="n">c</span><span class="p">,</span><span class="n">lambda_c</span><span class="p">,</span><span class="n">e0</span><span class="p">,</span><span class="n">e</span><span class="p">,</span><span class="n">xi</span><span class="p">,</span><span class="n">m</span><span class="p">,</span><span class="n">h0</span><span class="p">,</span><span class="n">ch</span><span class="p">,</span><span class="n">nb</span><span class="p">,</span><span class="n">A0</span><span class="p">,</span><span class="n">nd</span><span class="p">,</span><span class="n">zmax</span><span class="p">,</span><span class="n">cz</span><span class="p">,</span><span class="n">pa</span><span class="p">,</span><span class="n">z</span><span class="p">,</span><span class="n">p0</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="n">q0</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="n">epsilon_q</span><span class="p">,</span><span class="n">epsilon_v</span><span class="p">)</span>
+    <span class="n">q</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">q_temp</span><span class="p">)</span>
+    <span class="n">p</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">p_temp</span><span class="p">)</span>
+    
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">nrows</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="mi">6</span><span class="p">))</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">p0</span><span class="p">)):</span>
+    <span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">p</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="n">q</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+    <span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">epsilon_q</span><span class="p">,</span><span class="n">q</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">,</span><span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">,</span><span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;p&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;q&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$\varepsilon_q$&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;q&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/31abfd98b362eb85bd386fac3d69901d5b60db123e6781b97eff52bc7da10c9d.png" src="_images/31abfd98b362eb85bd386fac3d69901d5b60db123e6781b97eff52bc7da10c9d.png" />
+</div>
+</div>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="strain-controlled-cyclic-undrained">
+<h1>Strain controlled cyclic undrained<a class="headerlink" href="#strain-controlled-cyclic-undrained" title="Permalink to this heading">#</a></h1>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">G0</span> <span class="o">=</span> <span class="mi">125</span>
+<span class="n">nu</span> <span class="o">=</span> <span class="mf">0.05</span>
+<span class="n">M</span> <span class="o">=</span> <span class="mf">1.25</span>
+<span class="n">c</span> <span class="o">=</span> <span class="mf">0.712</span>
+<span class="n">lambda_c</span> <span class="o">=</span> <span class="mf">0.019</span>
+<span class="n">e0</span> <span class="o">=</span> <span class="mf">0.934</span>
+<span class="n">e</span> <span class="o">=</span> <span class="mf">0.833</span>
+<span class="n">xi</span> <span class="o">=</span> <span class="mf">0.7</span>
+<span class="n">m</span> <span class="o">=</span> <span class="mf">0.01</span>
+<span class="n">h0</span> <span class="o">=</span> <span class="mf">7.05</span>
+<span class="n">ch</span> <span class="o">=</span> <span class="mf">0.968</span>
+<span class="n">nb</span> <span class="o">=</span> <span class="mf">1.1</span>
+<span class="n">A0</span> <span class="o">=</span> <span class="mf">0.704</span>
+<span class="n">nd</span> <span class="o">=</span> <span class="mf">3.5</span>
+<span class="n">zmax</span> <span class="o">=</span> <span class="mf">4.0</span>
+<span class="n">cz</span> <span class="o">=</span> <span class="mi">600</span>
+<span class="n">pa</span> <span class="o">=</span> <span class="mf">101.325</span>
+<span class="n">z</span> <span class="o">=</span> <span class="mf">0.0</span>
+<span class="n">p0</span> <span class="o">=</span> <span class="mi">250</span>
+<span class="n">q0</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">N</span> <span class="o">=</span> <span class="mi">999</span>
+<span class="n">Ncyc</span> <span class="o">=</span> <span class="mi">5</span>
+<span class="n">time</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">Ncyc</span><span class="o">*</span><span class="n">N</span><span class="p">,</span><span class="n">Ncyc</span><span class="o">*</span><span class="n">N</span><span class="p">)</span>
+<span class="n">epsilon_q</span> <span class="o">=</span> <span class="mf">0.002</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="mf">2.0</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="n">N</span><span class="o">*</span><span class="n">time</span><span class="p">)</span>
+<span class="c1">#epsilon_q = np.linspace(0,0.25,N)</span>
+<span class="n">epsilon_v</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">N</span><span class="o">*</span><span class="n">Ncyc</span><span class="p">)</span>
+
+<span class="n">q</span><span class="p">,</span> <span class="n">p</span> <span class="o">=</span> <span class="n">dafalias_manzari_strain_control</span><span class="p">(</span><span class="n">G0</span><span class="p">,</span><span class="n">nu</span><span class="p">,</span><span class="n">M</span><span class="p">,</span><span class="n">c</span><span class="p">,</span><span class="n">lambda_c</span><span class="p">,</span><span class="n">e0</span><span class="p">,</span><span class="n">e</span><span class="p">,</span><span class="n">xi</span><span class="p">,</span><span class="n">m</span><span class="p">,</span><span class="n">h0</span><span class="p">,</span><span class="n">ch</span><span class="p">,</span><span class="n">nb</span><span class="p">,</span><span class="n">A0</span><span class="p">,</span><span class="n">nd</span><span class="p">,</span><span class="n">zmax</span><span class="p">,</span><span class="n">cz</span><span class="p">,</span><span class="n">pa</span><span class="p">,</span><span class="n">z</span><span class="p">,</span><span class="n">p0</span><span class="p">,</span><span class="n">q0</span><span class="p">,</span><span class="n">epsilon_q</span><span class="p">,</span><span class="n">epsilon_v</span><span class="p">)</span>
+
+    
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">nrows</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="mi">6</span><span class="p">))</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">p</span><span class="p">,</span><span class="n">q</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">epsilon_q</span><span class="p">,</span><span class="n">q</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">,</span><span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">,</span><span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;p&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;q&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$\varepsilon_q$&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;q&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(4.0, 0.5, &#39;q&#39;)
+</pre></div>
+</div>
+<img alt="_images/bcc212dee9da862ddfa454c6766b1276e65d77410d9c5225bb3834fd41df058f.png" src="_images/bcc212dee9da862ddfa454c6766b1276e65d77410d9c5225bb3834fd41df058f.png" />
+</div>
+</div>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="stress-controlled-undrained-cyclic-loading">
+<h1>Stress-Controlled Undrained Cyclic Loading<a class="headerlink" href="#stress-controlled-undrained-cyclic-loading" title="Permalink to this heading">#</a></h1>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">dafalias_manzari_stress_control</span><span class="p">(</span><span class="n">G0</span><span class="p">,</span><span class="n">nu</span><span class="p">,</span><span class="n">M</span><span class="p">,</span><span class="n">c</span><span class="p">,</span><span class="n">lambda_c</span><span class="p">,</span><span class="n">e0</span><span class="p">,</span><span class="n">e</span><span class="p">,</span><span class="n">xi</span><span class="p">,</span><span class="n">m</span><span class="p">,</span><span class="n">h0</span><span class="p">,</span><span class="n">ch</span><span class="p">,</span><span class="n">nb</span><span class="p">,</span><span class="n">A0</span><span class="p">,</span><span class="n">nd</span><span class="p">,</span><span class="n">zmax</span><span class="p">,</span><span class="n">cz</span><span class="p">,</span><span class="n">pa</span><span class="p">,</span><span class="n">z</span><span class="p">,</span><span class="n">p0</span><span class="p">,</span><span class="n">q</span><span class="p">,</span><span class="n">epsilon_q0</span><span class="p">,</span><span class="n">epsilon_v</span><span class="p">):</span>
+    <span class="n">N</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">q</span><span class="p">)</span>
+    <span class="c1"># Initialize arrays to 0</span>
+    <span class="n">p</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">N</span><span class="p">)</span>
+    <span class="n">epsilon_q</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">N</span><span class="p">)</span>
+    <span class="n">p</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">p0</span>
+    <span class="n">epsilon_q</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">epsilon_q0</span>
+    <span class="n">G</span> <span class="o">=</span> <span class="n">G0</span><span class="o">*</span><span class="n">pa</span><span class="o">*</span><span class="p">(</span><span class="mf">2.97</span><span class="o">-</span><span class="n">e</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="o">/</span><span class="p">(</span><span class="mi">1</span><span class="o">+</span><span class="n">e</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">p</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">/</span><span class="n">pa</span><span class="p">)</span><span class="o">**</span><span class="mf">0.5</span>
+    <span class="n">K</span> <span class="o">=</span> <span class="mi">2</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">+</span><span class="n">nu</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="mi">3</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="mi">2</span><span class="o">*</span><span class="n">nu</span><span class="p">))</span>
+    <span class="c1">#eta = q[0]/p[0]</span>
+    <span class="n">depsilon_qp</span> <span class="o">=</span> <span class="mf">0.0</span>
+    <span class="n">depsilon_vp</span> <span class="o">=</span> <span class="mf">0.0</span>
+    <span class="n">eta_in</span> <span class="o">=</span> <span class="n">m</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">sign</span><span class="p">(</span><span class="n">epsilon_q</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">epsilon_q</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+    <span class="n">alpha</span> <span class="o">=</span> <span class="mf">0.0</span>
+    <span class="n">SIGN</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">d</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">H</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">inf</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">N</span><span class="p">,</span><span class="mi">1</span><span class="p">):</span>
+        <span class="n">dq</span> <span class="o">=</span> <span class="n">q</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">-</span> <span class="n">q</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+        <span class="n">G</span> <span class="o">=</span> <span class="n">G0</span><span class="o">*</span><span class="n">pa</span><span class="o">*</span><span class="p">(</span><span class="mf">2.97</span><span class="o">-</span><span class="n">e</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="o">/</span><span class="p">(</span><span class="mi">1</span><span class="o">+</span><span class="n">e</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">p</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">/</span><span class="n">pa</span><span class="p">)</span><span class="o">**</span><span class="mf">0.5</span>
+        <span class="n">K</span> <span class="o">=</span> <span class="mi">2</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">+</span><span class="n">nu</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="mi">3</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="mi">2</span><span class="o">*</span><span class="n">nu</span><span class="p">))</span><span class="o">*</span><span class="n">G</span>
+        <span class="n">depsilon_qe</span> <span class="o">=</span> <span class="n">dq</span><span class="o">/</span><span class="p">(</span><span class="mi">3</span><span class="o">*</span><span class="n">G</span><span class="p">)</span>
+        <span class="n">depsilon_v</span> <span class="o">=</span> <span class="n">epsilon_v</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">-</span> <span class="n">epsilon_v</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+        <span class="n">q_trial</span> <span class="o">=</span> <span class="n">q</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+        <span class="n">p_trial</span> <span class="o">=</span> <span class="n">p</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">K</span><span class="o">*</span><span class="n">depsilon_v</span>
+        <span class="n">alpha_trial</span> <span class="o">=</span> <span class="n">alpha</span>
+        <span class="n">s</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sign</span><span class="p">(</span><span class="n">q_trial</span> <span class="o">-</span> <span class="n">p_trial</span><span class="o">*</span><span class="n">alpha_trial</span><span class="p">)</span>
+        <span class="n">f_trial</span> <span class="o">=</span> <span class="n">q_trial</span><span class="o">*</span><span class="n">s</span> <span class="o">-</span> <span class="n">p_trial</span><span class="o">*</span><span class="p">(</span><span class="n">alpha_trial</span><span class="o">*</span><span class="n">s</span> <span class="o">+</span> <span class="n">m</span><span class="p">)</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">f_trial</span><span class="o">&lt;</span><span class="mi">0</span><span class="p">):</span>
+            <span class="n">depsilon_qp</span> <span class="o">=</span> <span class="mf">0.0</span>
+            <span class="n">epsilon_q</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">epsilon_q</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">depsilon_qe</span>
+            <span class="n">depsilon_vp</span> <span class="o">=</span> <span class="mf">0.0</span>
+            <span class="n">p</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">p_trial</span>
+            <span class="n">q</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">q_trial</span>
+            <span class="n">H</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">inf</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">if</span><span class="p">(</span><span class="n">H</span> <span class="o">==</span> <span class="n">math</span><span class="o">.</span><span class="n">inf</span><span class="p">):</span>
+                <span class="n">dgamma</span> <span class="o">=</span> <span class="mf">0.0</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">a</span> <span class="o">=</span> <span class="n">K</span><span class="o">*</span><span class="n">d</span><span class="o">*</span><span class="n">s</span><span class="o">*</span><span class="n">H</span>
+                <span class="n">b</span> <span class="o">=</span> <span class="n">K</span><span class="o">*</span><span class="n">d</span><span class="o">*</span><span class="p">(</span><span class="n">alpha_trial</span> <span class="o">+</span> <span class="n">m</span><span class="o">*</span><span class="n">s</span><span class="p">)</span> <span class="o">-</span> <span class="n">H</span><span class="o">*</span><span class="n">p_trial</span> <span class="o">-</span> <span class="mi">3</span><span class="o">*</span><span class="n">G</span>
+                <span class="n">c</span> <span class="o">=</span> <span class="n">f_trial</span>
+                <span class="n">dgamma</span> <span class="o">=</span> <span class="p">(</span><span class="o">-</span><span class="n">b</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">b</span><span class="o">**</span><span class="mi">2</span><span class="o">-</span><span class="mi">4</span><span class="o">*</span><span class="n">a</span><span class="o">*</span><span class="n">c</span><span class="p">))</span><span class="o">/</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">a</span><span class="p">)</span>
+            <span class="n">depsilon_qp</span> <span class="o">=</span> <span class="n">dgamma</span><span class="o">*</span><span class="n">s</span>
+            <span class="n">epsilon_q</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">epsilon_q</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">depsilon_qp</span> <span class="o">+</span> <span class="n">depsilon_qe</span>
+            <span class="n">depsilon_vp</span> <span class="o">=</span> <span class="n">d</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">depsilon_qp</span><span class="p">)</span>
+            <span class="n">p</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">p</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">K</span><span class="o">*</span><span class="p">(</span><span class="n">depsilon_v</span> <span class="o">-</span> <span class="n">depsilon_vp</span><span class="p">)</span>            
+            <span class="n">eta</span> <span class="o">=</span> <span class="n">q</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">/</span><span class="n">p</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+            <span class="k">if</span><span class="p">(</span><span class="n">s</span> <span class="o">!=</span> <span class="n">SIGN</span><span class="p">):</span>
+                <span class="n">eta_in</span> <span class="o">=</span> <span class="n">alpha</span> <span class="o">+</span> <span class="n">m</span><span class="o">*</span><span class="n">s</span>
+                <span class="n">SIGN</span> <span class="o">=</span> <span class="n">s</span>
+            <span class="n">b0</span> <span class="o">=</span> <span class="n">G0</span><span class="o">*</span><span class="n">h0</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">ch</span><span class="o">*</span><span class="n">e</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">p</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">/</span><span class="n">pa</span><span class="p">)</span><span class="o">**-</span><span class="mf">0.5</span>
+            <span class="k">if</span><span class="p">(</span><span class="n">eta</span><span class="o">==</span><span class="n">eta_in</span><span class="p">):</span>
+                <span class="n">depsilon_qp</span> <span class="o">=</span> <span class="mf">0.0</span>
+                <span class="n">depsilon_vp</span> <span class="o">=</span> <span class="mf">0.0</span>
+                <span class="k">continue</span>
+            <span class="n">h</span> <span class="o">=</span> <span class="n">b0</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">eta</span><span class="o">-</span><span class="n">eta_in</span><span class="p">)</span>
+            <span class="n">psi</span> <span class="o">=</span> <span class="n">e</span> <span class="o">-</span> <span class="p">(</span><span class="n">e0</span> <span class="o">-</span> <span class="n">lambda_c</span><span class="o">*</span><span class="p">(</span><span class="n">p</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">/</span><span class="n">pa</span><span class="p">)</span><span class="o">**</span><span class="n">xi</span><span class="p">)</span>
+            <span class="n">Mb</span> <span class="o">=</span> <span class="n">M</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">nb</span><span class="o">*</span><span class="n">psi</span><span class="p">)</span>
+            <span class="n">Md</span> <span class="o">=</span> <span class="n">M</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">nd</span><span class="o">*</span><span class="n">psi</span><span class="p">)</span>
+            <span class="n">H</span> <span class="o">=</span> <span class="n">h</span><span class="o">*</span><span class="p">(</span><span class="n">Mb</span> <span class="o">-</span> <span class="n">eta</span><span class="o">*</span><span class="n">s</span><span class="p">)</span>       
+            <span class="n">alpha</span> <span class="o">=</span> <span class="n">alpha</span> <span class="o">+</span> <span class="n">H</span><span class="o">*</span><span class="n">depsilon_qp</span>
+            <span class="k">if</span><span class="p">(</span><span class="o">-</span><span class="n">depsilon_vp</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">):</span>
+                <span class="n">dz</span> <span class="o">=</span> <span class="n">cz</span><span class="o">*</span><span class="n">depsilon_vp</span><span class="o">*</span><span class="p">(</span><span class="n">s</span><span class="o">*</span><span class="n">zmax</span> <span class="o">+</span> <span class="n">z</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">dz</span> <span class="o">=</span> <span class="mi">0</span>
+            <span class="n">z</span> <span class="o">=</span> <span class="n">z</span><span class="o">+</span><span class="n">dz</span>
+            <span class="k">if</span><span class="p">(</span><span class="n">s</span><span class="o">*</span><span class="n">z</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">):</span>
+                <span class="n">Ad</span> <span class="o">=</span> <span class="n">A0</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">+</span><span class="n">s</span><span class="o">*</span><span class="n">z</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">Ad</span> <span class="o">=</span> <span class="n">A0</span>
+            <span class="n">d</span> <span class="o">=</span> <span class="n">Ad</span><span class="o">*</span><span class="p">(</span><span class="n">Md</span> <span class="o">-</span> <span class="n">eta</span><span class="o">*</span><span class="n">s</span><span class="p">)</span>
+        <span class="n">e</span> <span class="o">=</span> <span class="n">e</span> <span class="o">-</span> <span class="n">depsilon_v</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">+</span><span class="n">e</span><span class="p">)</span>
+    <span class="k">return</span><span class="p">([</span><span class="n">epsilon_q</span><span class="p">,</span><span class="n">p</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">G0</span> <span class="o">=</span> <span class="mi">125</span>
+<span class="n">nu</span> <span class="o">=</span> <span class="mf">0.05</span>
+<span class="n">M</span> <span class="o">=</span> <span class="mf">1.25</span>
+<span class="n">c</span> <span class="o">=</span> <span class="mf">0.712</span>
+<span class="n">lambda_c</span> <span class="o">=</span> <span class="mf">0.019</span>
+<span class="n">e0</span> <span class="o">=</span> <span class="mf">0.934</span>
+<span class="n">e</span> <span class="o">=</span> <span class="mf">0.8</span>
+<span class="n">xi</span> <span class="o">=</span> <span class="mf">0.7</span>
+<span class="n">m</span> <span class="o">=</span> <span class="mf">0.01</span>
+<span class="n">h0</span> <span class="o">=</span> <span class="mf">7.05</span>
+<span class="n">ch</span> <span class="o">=</span> <span class="mf">0.968</span>
+<span class="n">nb</span> <span class="o">=</span> <span class="mf">1.1</span>
+<span class="n">A0</span> <span class="o">=</span> <span class="mf">0.704</span>
+<span class="n">nd</span> <span class="o">=</span> <span class="mf">3.5</span>
+<span class="n">zmax</span> <span class="o">=</span> <span class="mf">5.0</span>
+<span class="n">cz</span> <span class="o">=</span> <span class="mi">600</span>
+<span class="n">pa</span> <span class="o">=</span> <span class="mf">101.325</span>
+<span class="n">z</span> <span class="o">=</span> <span class="mf">0.0</span>
+<span class="n">p0</span> <span class="o">=</span> <span class="mi">250</span>
+<span class="n">q0</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">N</span> <span class="o">=</span> <span class="mi">1000</span>
+<span class="n">Ncyc</span> <span class="o">=</span> <span class="mi">6</span>
+<span class="n">time</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">Ncyc</span><span class="o">*</span><span class="n">N</span><span class="p">,</span><span class="n">Ncyc</span><span class="o">*</span><span class="n">N</span><span class="p">)</span>
+<span class="n">epsilon_q0</span> <span class="o">=</span> <span class="mf">0.0</span>
+<span class="n">q</span> <span class="o">=</span> <span class="mf">0.4</span><span class="o">*</span><span class="n">p0</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="mf">2.0</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="n">N</span><span class="o">*</span><span class="n">time</span><span class="p">)</span>
+<span class="c1">#epsilon_q = np.linspace(0,0.25,N)</span>
+<span class="n">epsilon_v</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">N</span><span class="o">*</span><span class="n">Ncyc</span><span class="p">)</span>
+
+<span class="n">epsilon_q</span><span class="p">,</span> <span class="n">p</span> <span class="o">=</span> <span class="n">dafalias_manzari_stress_control</span><span class="p">(</span><span class="n">G0</span><span class="p">,</span><span class="n">nu</span><span class="p">,</span><span class="n">M</span><span class="p">,</span><span class="n">c</span><span class="p">,</span><span class="n">lambda_c</span><span class="p">,</span><span class="n">e0</span><span class="p">,</span><span class="n">e</span><span class="p">,</span><span class="n">xi</span><span class="p">,</span><span class="n">m</span><span class="p">,</span><span class="n">h0</span><span class="p">,</span><span class="n">ch</span><span class="p">,</span><span class="n">nb</span><span class="p">,</span><span class="n">A0</span><span class="p">,</span><span class="n">nd</span><span class="p">,</span><span class="n">zmax</span><span class="p">,</span><span class="n">cz</span><span class="p">,</span><span class="n">pa</span><span class="p">,</span><span class="n">z</span><span class="p">,</span><span class="n">p0</span><span class="p">,</span><span class="n">q</span><span class="p">,</span><span class="n">epsilon_q0</span><span class="p">,</span><span class="n">epsilon_v</span><span class="p">)</span>
+    
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">nrows</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="mi">6</span><span class="p">))</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">p</span><span class="p">,</span><span class="n">q</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">epsilon_q</span><span class="p">,</span><span class="n">q</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">,</span><span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">,</span><span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;p&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;q&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$\varepsilon_q$&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;q&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/2702cae1d1cc675f1e2e996ecf52b6c607ebe8fd41d3360f8c70c25ebcf7f259.png" src="_images/2702cae1d1cc675f1e2e996ecf52b6c607ebe8fd41d3360f8c70c25ebcf7f259.png" />
+</div>
+</div>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Dafalis and Manzari Model</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#yield-surface">Yield Surface</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#elasticity">Elasticity</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#flow-rule">Flow Rule</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hardening">Hardening</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#model-constants">Model Constants</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#explicit-integration-solution">Explicit Integration Solution</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#reproduce-figure-5">Reproduce Figure 5</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#reproduce-figure-6">Reproduce Figure 6</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#reproduce-figure-7">Reproduce Figure 7</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#strain-controlled-cyclic-undrained">Strain controlled cyclic undrained</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#stress-controlled-undrained-cyclic-loading">Stress-Controlled Undrained Cyclic Loading</a></li>
+</ul>
+
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Scott Brandenberg
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
