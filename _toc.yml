@@ -9,7 +9,6 @@ chapters:
 - file: one_dimensional_plasticity_explicit
 - file: one_dimensional_plasticity_multiple_yield_surface
 - file: one_dimensional_plasticity_bounding_surface
-- file: drucker_prager
 - file: nonlinear_elasticity
 - file: cam_clay
 - file: dafalias_manzari
