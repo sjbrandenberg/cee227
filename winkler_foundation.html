@@ -1,0 +1,1249 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>Beam on Winkler Foundation Exact Solution and Finite Element Approximation &#8212; CEE 227 - Computational Geomechanics</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'winkler_foundation';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="README.html">
+  
+  
+  
+  
+  
+    <p class="title logo__title">CEE 227 - Computational Geomechanics</p>
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="README.html">
+                    CEE227: Numerical Methods in Geotechncial Engineering
+                </a>
+            </li>
+        </ul>
+        <ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="integration_algorithms.html">Integration algorith example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="one_dimensional_plasticity_implicit.html">Elastic Perfectly-Plastic - Implicit Integration</a></li>
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="one_dimensional_plasticity_explicit.html">Elastic Perfectly-Plastic - Explicit Integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="one_dimensional_plasticity_multiple_yield_surface.html">Elasto-Plastic Multiple Yield Surface Plasticity Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="nonlinear_elasticity.html">Integration of nonlinear elasticity equations</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="cam_clay.html">Cam Clay Material Model</a></li>
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="dafalias_manzari.html">Dafalis and Manzari Model</a></li>
+
+
+
+
+
+
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://colab.research.google.com/github/sjbrandenberg/cee227/blob/main/docs/winkler_foundation.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch onColab"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img src="_static/images/logo_colab.png">
+  </span>
+<span class="btn__text-container">Colab</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/sjbrandenberg/cee227" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/sjbrandenberg/cee227/issues/new?title=Issue%20on%20page%20%2Fwinkler_foundation.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/winkler_foundation.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Beam on Winkler Foundation Exact Solution and Finite Element Approximation</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Beam on Winkler Foundation Exact Solution and Finite Element Approximation</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#requirements">Requirements</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#purpose">Purpose</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#winkler-assumption">Winkler Assumption</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#definition-of-terms">Definition of Terms</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#governing-differential-equation">Governing Differential Equation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#solution-of-governing-differential-equation">Solution of Governing Differential Equation</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#finite-element-approximate-solution">Finite Element Approximate Solution</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#beam-stiffness-matrix">Beam Stiffness Matrix</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#winkler-stiffness-matrix">Winkler Stiffness Matrix</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#combined-stiffness-matrix">Combined Stiffness Matrix</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#assembling-global-stiffness-matrix-from-element-stiffness-matrices">Assembling global stiffness matrix from element stiffness matrices</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#solving-the-system-of-equations">Solving the System of Equations</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#a-few-comments">A few comments</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#solution-with-vertically-variable-k-y-i">Solution with vertically variable <span class="math notranslate nohighlight">\(k_y^i\)</span></a></li>
+</ul>
+</li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="beam-on-winkler-foundation-exact-solution-and-finite-element-approximation">
+<h1>Beam on Winkler Foundation Exact Solution and Finite Element Approximation<a class="headerlink" href="#beam-on-winkler-foundation-exact-solution-and-finite-element-approximation" title="Permalink to this heading">#</a></h1>
+<section id="requirements">
+<h2>Requirements<a class="headerlink" href="#requirements" title="Permalink to this heading">#</a></h2>
+<p>sympy<br />
+numpy<br />
+scipy<br />
+matplotlib</p>
+</section>
+<section id="purpose">
+<h2>Purpose<a class="headerlink" href="#purpose" title="Permalink to this heading">#</a></h2>
+<p>This notebook does the following:</p>
+<ol class="arabic simple">
+<li><p>Derive the 4th-order Ordinary Differential Equation (ODE) governing the response of a beam on elastic foundation</p></li>
+<li><p>Define the solution to the ODE</p></li>
+<li><p>Develop a solution strategy to solve for the coefficients to satsify boundary conditions</p></li>
+<li><p>Develop equations for the stiffness matrix of an Euler-Bernoulli beam using Hermite cubic polynomial shape functions</p></li>
+<li><p>Develop equations for the stiffness matrix of the p-y “springs” attached to the beam</p></li>
+<li><p>Approximate the solution using the finite element method</p></li>
+</ol>
+</section>
+<section id="winkler-assumption">
+<h2>Winkler Assumption<a class="headerlink" href="#winkler-assumption" title="Permalink to this heading">#</a></h2>
+<p>The Winkler assumption is that a pressure develops when a beam displaces into an elastic medium, and that the pressure is proportional to the displacement of the beam, and independent of the stresses at other points on the beam. It’s important to remember that the Winkler assumption is mechanically incorrect, but it’s useful. If you analyze a beam using continuum methods, the pressure is not actually proportional to displacement. As an example, a rigid beam resting on an elastic halfspace has infinite pressure at the ends and smaller pressures in the middle, even though the displacements of the beam are identical everywhere. The solution is nevertheless useful, and forms the basis for laterally loaded pile analyses using programs like LPile.</p>
+</section>
+<section id="definition-of-terms">
+<h2>Definition of Terms<a class="headerlink" href="#definition-of-terms" title="Permalink to this heading">#</a></h2>
+<p><span class="math notranslate nohighlight">\(EI\)</span> = flexural stiffness of beam units = <span class="math notranslate nohighlight">\(\left(FL^2\right)\)</span><br />
+<span class="math notranslate nohighlight">\(k_y^i\)</span> = subgrade reaction stiffness intensity <span class="math notranslate nohighlight">\(\left(F/L/L\right)\)</span><br />
+<span class="math notranslate nohighlight">\(\beta = \sqrt[^4]{\frac{k_y^i}{4EI}}\)</span> = Winkler stiffness parameter <span class="math notranslate nohighlight">\(\left(L^{-1}\right)\)</span><br />
+<span class="math notranslate nohighlight">\(p\)</span> = line load acting on beam<br />
+<span class="math notranslate nohighlight">\(V\)</span> = shear in beam<br />
+<span class="math notranslate nohighlight">\(M\)</span> = bending moment in beam<br />
+<span class="math notranslate nohighlight">\(\phi\)</span> = curvature of beam<br />
+<span class="math notranslate nohighlight">\(\theta\)</span> = rotation of beam<br />
+<span class="math notranslate nohighlight">\(u\)</span> = beam displacement<br />
+<span class="math notranslate nohighlight">\(z\)</span> = length dimension along beam axis<br />
+<span class="math notranslate nohighlight">\(H\)</span> = length of beam
+<br>
+Note: The units for <span class="math notranslate nohighlight">\(k_y^i\)</span> are often a source of confusion. I specify them as <span class="math notranslate nohighlight">\(\left(F/L/L\right)\)</span> here because the stiffness intensity relates the line load mobilized against the beam to the beam displacement. So it’s like a line load with units of <span class="math notranslate nohighlight">\(F/L\)</span> will be mobilized for a displacement with units of <span class="math notranslate nohighlight">\(L\)</span>. However, the units are often presented as <span class="math notranslate nohighlight">\(\left(F/L^2\right)\)</span>.</p>
+</section>
+<section id="governing-differential-equation">
+<h2>Governing Differential Equation<a class="headerlink" href="#governing-differential-equation" title="Permalink to this heading">#</a></h2>
+<p>An Euler-Bernoulli beam is defined by the following relationships in integral form:</p>
+<p><span class="math notranslate nohighlight">\(V = \int{p}\)</span><br />
+<span class="math notranslate nohighlight">\(M = \int{V} = EI\phi\)</span><br />
+<span class="math notranslate nohighlight">\(\theta = \int{\phi}\)</span><br />
+<span class="math notranslate nohighlight">\(u = \int{\theta}\)</span></p>
+<p>The equivalent expression in differential form are:</p>
+<p><span class="math notranslate nohighlight">\(\theta = \frac{du}{dz}\)</span><br />
+<span class="math notranslate nohighlight">\(\phi = \frac{d^2u}{dz^2}\)</span><br />
+<span class="math notranslate nohighlight">\(M = EI\frac{d^2u}{dz^2}\)</span><br />
+<span class="math notranslate nohighlight">\(V = EI\frac{d^3u}{dz^3}\)</span><br />
+<span class="math notranslate nohighlight">\(p = EI\frac{d^4u}{dz^4}\)</span></p>
+<p>The Winkler assumption give us:</p>
+<p><span class="math notranslate nohighlight">\(p = -k_y^iu\)</span></p>
+<p>Equating the expressions for p from beam theory with that for the Winkler assumption produces the governing differential equation:</p>
+<p><span class="math notranslate nohighlight">\(EI\frac{d^4u}{dz^4} + k_y^iu = 0\)</span></p>
+</section>
+<section id="solution-of-governing-differential-equation">
+<h2>Solution of Governing Differential Equation<a class="headerlink" href="#solution-of-governing-differential-equation" title="Permalink to this heading">#</a></h2>
+<p>Assuming that <span class="math notranslate nohighlight">\(EI\)</span> and <span class="math notranslate nohighlight">\(k_y^i\)</span> are constants, the analytical solution for displacement and derivatives (computed in the cell below using Sympy) takes the form:</p>
+<p><span class="math notranslate nohighlight">\(u = C_1e^{-\beta z}cos\left(\beta z\right) + C_2e^{-\beta z}sin\left(\beta z\right) + C_3e^{\beta z}cos\left(\beta z\right) + C_4e^{\beta z}cos\left(\beta z\right)\)</span></p>
+<p><span class="math notranslate nohighlight">\(\frac{du}{dz} = - C_{1} \beta e^{- \beta x} \sin{\left(\beta x \right)} - C_{1} \beta e^{- \beta x} \cos{\left(\beta x \right)} - C_{2} \beta e^{- \beta x} \sin{\left(\beta x \right)} + C_{2} \beta e^{- \beta x} \cos{\left(\beta x \right)} - C_{3} \beta e^{\beta x} \sin{\left(\beta x \right)} + C_{3} \beta e^{\beta x} \cos{\left(\beta x \right)} + C_{4} \beta e^{\beta x} \sin{\left(\beta x \right)} + C_{4} \beta e^{\beta x} \cos{\left(\beta x \right)}\)</span></p>
+<p><span class="math notranslate nohighlight">\(\frac{d^2u}{dz^2} = 2 \beta^{2} \left(C_{1} e^{- \beta x} \sin{\left(\beta x \right)} - C_{2} e^{- \beta x} \cos{\left(\beta x \right)} - C_{3} e^{\beta x} \sin{\left(\beta x \right)} + C_{4} e^{\beta x} \cos{\left(\beta x \right)}\right)\)</span></p>
+<p><span class="math notranslate nohighlight">\(\frac{d^3u}{dz^3} = 2 \beta^{3} \left(- C_{1} e^{- \beta x} \sin{\left(\beta x \right)} + C_{1} e^{- \beta x} \cos{\left(\beta x \right)} + C_{2} e^{- \beta x} \sin{\left(\beta x \right)} + C_{2} e^{- \beta x} \cos{\left(\beta x \right)} - C_{3} e^{\beta x} \sin{\left(\beta x \right)} - C_{3} e^{\beta x} \cos{\left(\beta x \right)} - C_{4} e^{\beta x} \sin{\left(\beta x \right)} + C_{4} e^{\beta x} \cos{\left(\beta x \right)}\right)\)</span></p>
+<p><span class="math notranslate nohighlight">\(\frac{d^4u}{dz^4} = - 4 \beta^{4} \left(C_{1} e^{- \beta x} \cos{\left(\beta x \right)} + C_{2} e^{- \beta x} \sin{\left(\beta x \right)} + C_{3} e^{\beta x} \cos{\left(\beta x \right)} + C_{4} e^{\beta x} \sin{\left(\beta x \right)}\right)\)</span></p>
+<p>The C’s are coefficients that must be solved to satisfy essential boundary conditions, generally specified at the ends of the beam (i.e., at <span class="math notranslate nohighlight">\(z=0\)</span> and at <span class="math notranslate nohighlight">\(z=L\)</span>).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sympy</span> <span class="k">as</span> <span class="nn">sym</span>
+
+<span class="n">x</span> <span class="o">=</span> <span class="n">sym</span><span class="o">.</span><span class="n">Symbol</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">)</span>
+<span class="n">beta</span> <span class="o">=</span> <span class="n">sym</span><span class="o">.</span><span class="n">Symbol</span><span class="p">(</span><span class="s1">&#39;beta&#39;</span><span class="p">)</span>
+<span class="n">C1</span> <span class="o">=</span> <span class="n">sym</span><span class="o">.</span><span class="n">Symbol</span><span class="p">(</span><span class="s1">&#39;C1&#39;</span><span class="p">)</span>
+<span class="n">C2</span> <span class="o">=</span> <span class="n">sym</span><span class="o">.</span><span class="n">Symbol</span><span class="p">(</span><span class="s1">&#39;C2&#39;</span><span class="p">)</span>
+<span class="n">C3</span> <span class="o">=</span> <span class="n">sym</span><span class="o">.</span><span class="n">Symbol</span><span class="p">(</span><span class="s1">&#39;C3&#39;</span><span class="p">)</span>
+<span class="n">C4</span> <span class="o">=</span> <span class="n">sym</span><span class="o">.</span><span class="n">Symbol</span><span class="p">(</span><span class="s1">&#39;C4&#39;</span><span class="p">)</span>
+<span class="n">sym</span><span class="o">.</span><span class="n">init_printing</span><span class="p">()</span>
+<span class="n">f</span> <span class="o">=</span> <span class="n">C1</span><span class="o">*</span><span class="n">sym</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">beta</span><span class="o">*</span><span class="n">x</span><span class="p">)</span><span class="o">*</span><span class="n">sym</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">beta</span><span class="o">*</span><span class="n">x</span><span class="p">)</span> <span class="o">+</span> <span class="n">C2</span><span class="o">*</span><span class="n">sym</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">beta</span><span class="o">*</span><span class="n">x</span><span class="p">)</span><span class="o">*</span><span class="n">sym</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">beta</span><span class="o">*</span><span class="n">x</span><span class="p">)</span> <span class="o">+</span> <span class="n">C3</span><span class="o">*</span><span class="n">sym</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">beta</span><span class="o">*</span><span class="n">x</span><span class="p">)</span><span class="o">*</span><span class="n">sym</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">beta</span><span class="o">*</span><span class="n">x</span><span class="p">)</span> <span class="o">+</span> <span class="n">C4</span><span class="o">*</span><span class="n">sym</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">beta</span><span class="o">*</span><span class="n">x</span><span class="p">)</span><span class="o">*</span><span class="n">sym</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">beta</span><span class="o">*</span><span class="n">x</span><span class="p">)</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">sym</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">f</span><span class="p">,</span><span class="n">x</span><span class="p">,</span><span class="mi">4</span><span class="p">)</span>
+<span class="n">sym</span><span class="o">.</span><span class="n">print_latex</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+<span class="n">X</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>- 4 \beta^{4} \left(C_{1} e^{- \beta x} \cos{\left(\beta x \right)} + C_{2} e^{- \beta x} \sin{\left(\beta x \right)} + C_{3} e^{\beta x} \cos{\left(\beta x \right)} + C_{4} e^{\beta x} \sin{\left(\beta x \right)}\right)
+</pre></div>
+</div>
+<img alt="_images/245bda2a2b87f223db069d8f68453260e293525f6170e5c1f6c815b804040932.png" src="_images/245bda2a2b87f223db069d8f68453260e293525f6170e5c1f6c815b804040932.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Function to return displacement or its derivatives, up to the 4th derivative</span>
+<span class="k">def</span> <span class="nf">get_u</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">beta</span><span class="p">,</span><span class="n">C</span><span class="p">,</span><span class="n">order</span><span class="p">):</span>
+    <span class="n">bx</span> <span class="o">=</span> <span class="n">beta</span><span class="o">*</span><span class="n">x</span>
+    <span class="n">C1</span> <span class="o">=</span> <span class="n">C</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">C2</span> <span class="o">=</span> <span class="n">C</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">C3</span> <span class="o">=</span> <span class="n">C</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
+    <span class="n">C4</span> <span class="o">=</span> <span class="n">C</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">order</span><span class="o">==</span><span class="mi">0</span><span class="p">):</span>
+        <span class="n">output</span> <span class="o">=</span> <span class="n">C1</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">bx</span><span class="p">)</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">bx</span><span class="p">)</span>
+        <span class="n">output</span> <span class="o">+=</span> <span class="n">C2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">bx</span><span class="p">)</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">bx</span><span class="p">)</span>
+        <span class="n">output</span> <span class="o">+=</span> <span class="n">C3</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">bx</span><span class="p">)</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">bx</span><span class="p">)</span>
+        <span class="n">output</span> <span class="o">+=</span> <span class="n">C4</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">bx</span><span class="p">)</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">bx</span><span class="p">)</span>
+    <span class="k">elif</span><span class="p">(</span><span class="n">order</span><span class="o">==</span><span class="mi">1</span><span class="p">):</span>
+        <span class="n">output</span> <span class="o">=</span> <span class="n">C1</span><span class="o">*</span><span class="n">beta</span><span class="o">*</span><span class="p">(</span><span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">bx</span><span class="p">)</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">bx</span><span class="p">)</span><span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">bx</span><span class="p">)</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">bx</span><span class="p">))</span>
+        <span class="n">output</span> <span class="o">+=</span> <span class="n">C2</span><span class="o">*</span><span class="n">beta</span><span class="o">*</span><span class="p">(</span><span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">bx</span><span class="p">)</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">bx</span><span class="p">)</span><span class="o">+</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">bx</span><span class="p">)</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">bx</span><span class="p">))</span>
+        <span class="n">output</span> <span class="o">+=</span> <span class="n">C3</span><span class="o">*</span><span class="n">beta</span><span class="o">*</span><span class="p">(</span><span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">bx</span><span class="p">)</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">bx</span><span class="p">)</span><span class="o">+</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">bx</span><span class="p">)</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">bx</span><span class="p">))</span>
+        <span class="n">output</span> <span class="o">+=</span> <span class="n">C4</span><span class="o">*</span><span class="n">beta</span><span class="o">*</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">bx</span><span class="p">)</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">bx</span><span class="p">)</span><span class="o">+</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">bx</span><span class="p">)</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">bx</span><span class="p">))</span>
+    <span class="k">elif</span><span class="p">(</span><span class="n">order</span><span class="o">==</span><span class="mi">2</span><span class="p">):</span>
+        <span class="n">output</span> <span class="o">=</span> <span class="mi">2</span><span class="o">*</span><span class="n">beta</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="n">C1</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">bx</span><span class="p">)</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">bx</span><span class="p">)</span>
+        <span class="n">output</span> <span class="o">+=</span> <span class="o">-</span><span class="mi">2</span><span class="o">*</span><span class="n">beta</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="n">C2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">bx</span><span class="p">)</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">bx</span><span class="p">)</span>
+        <span class="n">output</span> <span class="o">+=</span> <span class="o">-</span><span class="mi">2</span><span class="o">*</span><span class="n">beta</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="n">C3</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">bx</span><span class="p">)</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">bx</span><span class="p">)</span>
+        <span class="n">output</span> <span class="o">+=</span> <span class="mi">2</span><span class="o">*</span><span class="n">beta</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="n">C4</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">bx</span><span class="p">)</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">bx</span><span class="p">)</span>
+    <span class="k">elif</span><span class="p">(</span><span class="n">order</span><span class="o">==</span><span class="mi">3</span><span class="p">):</span>
+        <span class="n">output</span> <span class="o">=</span> <span class="mi">2</span><span class="o">*</span><span class="n">C1</span><span class="o">*</span><span class="n">beta</span><span class="o">**</span><span class="mi">3</span><span class="o">*</span><span class="p">(</span><span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">bx</span><span class="p">)</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">bx</span><span class="p">)</span><span class="o">+</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">bx</span><span class="p">)</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">bx</span><span class="p">))</span>
+        <span class="n">output</span> <span class="o">+=</span> <span class="mi">2</span><span class="o">*</span><span class="n">C2</span><span class="o">*</span><span class="n">beta</span><span class="o">**</span><span class="mi">3</span><span class="o">*</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">bx</span><span class="p">)</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">bx</span><span class="p">)</span><span class="o">+</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">bx</span><span class="p">)</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">bx</span><span class="p">))</span>
+        <span class="n">output</span> <span class="o">+=</span> <span class="mi">2</span><span class="o">*</span><span class="n">C3</span><span class="o">*</span><span class="n">beta</span><span class="o">**</span><span class="mi">3</span><span class="o">*</span><span class="p">(</span><span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">bx</span><span class="p">)</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">bx</span><span class="p">)</span><span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">bx</span><span class="p">)</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">bx</span><span class="p">))</span>
+        <span class="n">output</span> <span class="o">+=</span> <span class="mi">2</span><span class="o">*</span><span class="n">C4</span><span class="o">*</span><span class="n">beta</span><span class="o">**</span><span class="mi">3</span><span class="o">*</span><span class="p">(</span><span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">bx</span><span class="p">)</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">bx</span><span class="p">)</span><span class="o">+</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">bx</span><span class="p">)</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">bx</span><span class="p">))</span>
+    <span class="k">elif</span><span class="p">(</span><span class="n">order</span><span class="o">==</span><span class="mi">4</span><span class="p">):</span>
+        <span class="n">output</span> <span class="o">=</span> <span class="o">-</span><span class="mi">4</span><span class="o">*</span><span class="n">beta</span><span class="o">**</span><span class="mi">4</span><span class="o">*</span><span class="n">C1</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">bx</span><span class="p">)</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">bx</span><span class="p">)</span>
+        <span class="n">output</span> <span class="o">+=</span> <span class="o">-</span><span class="mi">4</span><span class="o">*</span><span class="n">beta</span><span class="o">**</span><span class="mi">4</span><span class="o">*</span><span class="n">C2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">bx</span><span class="p">)</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">bx</span><span class="p">)</span>
+        <span class="n">output</span> <span class="o">+=</span> <span class="o">-</span><span class="mi">4</span><span class="o">*</span><span class="n">beta</span><span class="o">**</span><span class="mi">4</span><span class="o">*</span><span class="n">C3</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">bx</span><span class="p">)</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">bx</span><span class="p">)</span>
+        <span class="n">output</span> <span class="o">+=</span> <span class="o">-</span><span class="mi">4</span><span class="o">*</span><span class="n">beta</span><span class="o">**</span><span class="mi">4</span><span class="o">*</span><span class="n">C4</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">bx</span><span class="p">)</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">bx</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">output</span> <span class="o">=</span> <span class="s1">&#39;Invalid order in u(x,beta,C,order)&#39;</span>
+    <span class="k">return</span> <span class="n">output</span>
+
+<span class="c1"># Function to solve for C&#39;s by setting up a matrix and vector based on specified boundary conditions</span>
+<span class="k">def</span> <span class="nf">get_C</span><span class="p">(</span><span class="n">BCs</span><span class="p">,</span><span class="n">beta</span><span class="p">):</span>
+    <span class="n">Mat</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">4</span><span class="p">,</span><span class="mi">4</span><span class="p">))</span>
+    <span class="n">Vec</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">4</span><span class="p">):</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="n">BCs</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">2</span><span class="p">]</span>
+        <span class="n">bx</span> <span class="o">=</span> <span class="n">beta</span><span class="o">*</span><span class="n">x</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">BCs</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">):</span>
+            <span class="n">Mat</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">bx</span><span class="p">)</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">bx</span><span class="p">)</span>
+            <span class="n">Mat</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">bx</span><span class="p">)</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">bx</span><span class="p">)</span>
+            <span class="n">Mat</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">bx</span><span class="p">)</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">bx</span><span class="p">)</span>
+            <span class="n">Mat</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">3</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">bx</span><span class="p">)</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">bx</span><span class="p">)</span>
+        <span class="k">elif</span><span class="p">(</span><span class="n">BCs</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1</span><span class="p">):</span>
+            <span class="n">Mat</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">beta</span><span class="o">*</span><span class="p">(</span><span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">bx</span><span class="p">)</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">bx</span><span class="p">)</span><span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">bx</span><span class="p">)</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">bx</span><span class="p">))</span>
+            <span class="n">Mat</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">beta</span><span class="o">*</span><span class="p">(</span><span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">bx</span><span class="p">)</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">bx</span><span class="p">)</span><span class="o">+</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">bx</span><span class="p">)</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">bx</span><span class="p">))</span>
+            <span class="n">Mat</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="n">beta</span><span class="o">*</span><span class="p">(</span><span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">bx</span><span class="p">)</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">bx</span><span class="p">)</span><span class="o">+</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">bx</span><span class="p">)</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">bx</span><span class="p">))</span>
+            <span class="n">Mat</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">3</span><span class="p">]</span> <span class="o">=</span> <span class="n">beta</span><span class="o">*</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">bx</span><span class="p">)</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">bx</span><span class="p">)</span><span class="o">+</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">bx</span><span class="p">)</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">bx</span><span class="p">))</span>
+        <span class="k">elif</span><span class="p">(</span><span class="n">BCs</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="mi">2</span><span class="p">):</span>
+            <span class="n">Mat</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">2</span><span class="o">*</span><span class="n">beta</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">bx</span><span class="p">)</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">bx</span><span class="p">)</span>
+            <span class="n">Mat</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="mi">2</span><span class="o">*</span><span class="n">beta</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">bx</span><span class="p">)</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">bx</span><span class="p">)</span>
+            <span class="n">Mat</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="mi">2</span><span class="o">*</span><span class="n">beta</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">bx</span><span class="p">)</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">bx</span><span class="p">)</span>
+            <span class="n">Mat</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">3</span><span class="p">]</span> <span class="o">=</span> <span class="mi">2</span><span class="o">*</span><span class="n">beta</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">bx</span><span class="p">)</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">bx</span><span class="p">)</span>
+        <span class="k">elif</span><span class="p">(</span><span class="n">BCs</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="mi">3</span><span class="p">):</span>
+            <span class="n">Mat</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">2</span><span class="o">*</span><span class="n">beta</span><span class="o">**</span><span class="mi">3</span><span class="o">*</span><span class="p">(</span><span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">bx</span><span class="p">)</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">bx</span><span class="p">)</span><span class="o">+</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">bx</span><span class="p">)</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">bx</span><span class="p">))</span>
+            <span class="n">Mat</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mi">2</span><span class="o">*</span><span class="n">beta</span><span class="o">**</span><span class="mi">3</span><span class="o">*</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">bx</span><span class="p">)</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">bx</span><span class="p">)</span><span class="o">+</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">bx</span><span class="p">)</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">bx</span><span class="p">))</span>
+            <span class="n">Mat</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="mi">2</span><span class="o">*</span><span class="n">beta</span><span class="o">**</span><span class="mi">3</span><span class="o">*</span><span class="p">(</span><span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">bx</span><span class="p">)</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">bx</span><span class="p">)</span><span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">bx</span><span class="p">)</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">bx</span><span class="p">))</span>
+            <span class="n">Mat</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">3</span><span class="p">]</span> <span class="o">=</span> <span class="mi">2</span><span class="o">*</span><span class="n">beta</span><span class="o">**</span><span class="mi">3</span><span class="o">*</span><span class="p">(</span><span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">bx</span><span class="p">)</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">bx</span><span class="p">)</span><span class="o">+</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">bx</span><span class="p">)</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">bx</span><span class="p">))</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span><span class="p">(</span><span class="s1">&#39;Invalid order in get_C(BCs,beta)&#39;</span><span class="p">)</span>
+        <span class="n">Vec</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">BCs</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">Mat</span><span class="p">,</span><span class="n">Vec</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="sd">&#39;&#39;&#39;Boundary conditions. Specify numpy array with four entries; one for each BC. </span>
+<span class="sd">First element indicates BC type (0 = disp, 1 = slope, 2 = moment, 3 = shear)</span>
+<span class="sd">Second element indicates BC value</span>
+<span class="sd">Third element indicates BC position</span>
+<span class="sd">e.g. [0, 0.1, 0.0] specifies displacement = 0 at z=0.</span>
+<span class="sd">     [1, 0.0, H] specifies rotation = 0 at z=H.</span>
+<span class="sd">&#39;&#39;&#39;</span>
+
+<span class="n">H</span> <span class="o">=</span> <span class="mi">4</span>
+<span class="n">EI</span> <span class="o">=</span> <span class="mi">1000</span>
+<span class="n">kyi</span> <span class="o">=</span> <span class="mi">100</span>
+<span class="n">beta</span> <span class="o">=</span> <span class="p">(</span><span class="n">kyi</span><span class="o">/</span><span class="p">(</span><span class="mi">4</span><span class="o">*</span><span class="n">EI</span><span class="p">))</span><span class="o">**</span><span class="mf">0.25</span>
+<span class="n">BCs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">([</span>
+    <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mf">0.1</span><span class="p">,</span><span class="mf">0.0</span><span class="p">],</span>
+    <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mf">0.0</span><span class="p">,</span><span class="mf">0.0</span><span class="p">],</span>
+    <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mf">0.0</span><span class="p">,</span><span class="n">H</span><span class="p">],</span>
+    <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mf">0.0</span><span class="p">,</span><span class="n">H</span><span class="p">]</span>    
+<span class="p">])</span>
+<span class="n">C</span> <span class="o">=</span> <span class="n">get_C</span><span class="p">(</span><span class="n">BCs</span><span class="p">,</span><span class="n">beta</span><span class="p">)</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">H</span><span class="p">,</span><span class="mi">100</span><span class="p">)</span>
+<span class="n">u</span> <span class="o">=</span> <span class="n">get_u</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">beta</span><span class="p">,</span><span class="n">C</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">theta</span> <span class="o">=</span> <span class="n">get_u</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">beta</span><span class="p">,</span><span class="n">C</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">M</span> <span class="o">=</span> <span class="n">EI</span><span class="o">*</span><span class="n">get_u</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">beta</span><span class="p">,</span><span class="n">C</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">V</span> <span class="o">=</span> <span class="n">EI</span><span class="o">*</span><span class="n">get_u</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">beta</span><span class="p">,</span><span class="n">C</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">p</span> <span class="o">=</span> <span class="n">EI</span><span class="o">*</span><span class="n">get_u</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">beta</span><span class="p">,</span><span class="n">C</span><span class="p">,</span><span class="mi">4</span><span class="p">)</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">ncols</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span><span class="n">sharey</span><span class="o">=</span><span class="s1">&#39;row&#39;</span><span class="p">,</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span><span class="mi">4</span><span class="p">))</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">u</span><span class="p">,</span><span class="n">x</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">theta</span><span class="p">,</span><span class="n">x</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">M</span><span class="p">,</span><span class="n">x</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">V</span><span class="p">,</span><span class="n">x</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">p</span><span class="p">,</span><span class="n">x</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;Beam&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="o">-</span><span class="n">kyi</span><span class="o">*</span><span class="n">u</span><span class="p">,</span><span class="n">x</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;Winkler&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">invert_yaxis</span><span class="p">()</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;depth&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;u&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$\theta$&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;M&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;V&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;p&#39;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="n">ax</span><span class="p">:</span>
+    <span class="n">a</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/754cbb4438796dbb1503cb6c5ecc3dea10360ce359eb69c87d8dade5a2196fd1.png" src="_images/754cbb4438796dbb1503cb6c5ecc3dea10360ce359eb69c87d8dade5a2196fd1.png" />
+</div>
+</div>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="finite-element-approximate-solution">
+<h1>Finite Element Approximate Solution<a class="headerlink" href="#finite-element-approximate-solution" title="Permalink to this heading">#</a></h1>
+<p>The finite element approximation requires definition of a stiffness matrix for the basic element, which consists of an Euler-Bernoulli beam supported by two Winkler springs, as illustrated below. Nodes 1 and 2 have two degrees of freedom; one for horizontal displacement and one for rotation. Nodes 3 and 4 are assumed to be fixed (i.e., no free-field ground displacement).</p>
+<img src='WinklerElement.png' alt='Winkler Element' style='height:200px;'>
+<p>The beam stiffness matrix is developed using Hermite cubic polynomial shape functions. These shape functions do not match the analytical solution for constant <span class="math notranslate nohighlight">\(k_y^i\)</span> and <span class="math notranslate nohighlight">\(EI\)</span>, but are reasonably accurate when an adequate number of elements is utilized, and/or when the wall is stiff relative to the soil.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="n">dx</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">N</span> <span class="o">=</span> <span class="mi">100</span>
+<span class="n">z</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">dx</span><span class="p">,</span><span class="n">N</span><span class="p">)</span>
+<span class="n">phi</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">4</span><span class="p">,</span><span class="n">N</span><span class="p">))</span>
+<span class="n">phi</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">z</span><span class="o">/</span><span class="n">dx</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">+</span><span class="mi">2</span><span class="o">*</span><span class="n">z</span><span class="o">/</span><span class="n">dx</span><span class="p">)</span>
+<span class="n">phi</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">z</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">z</span><span class="o">/</span><span class="n">dx</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span>
+<span class="n">phi</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">z</span><span class="o">/</span><span class="n">dx</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="p">(</span><span class="mi">3</span><span class="o">-</span><span class="mi">2</span><span class="o">*</span><span class="n">z</span><span class="o">/</span><span class="n">dx</span><span class="p">)</span>
+<span class="n">phi</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="n">z</span><span class="o">**</span><span class="mi">2</span><span class="o">/</span><span class="n">dx</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">z</span><span class="o">/</span><span class="n">dx</span><span class="p">)</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">4</span><span class="p">):</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">phi</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="n">z</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">))</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s1">&#39;Shape Function&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$\phi$&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;z/dx&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">,</span><span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/00faf7c1faf301e39f2b763089a81536674d891ff7f294a41fca0ca14dbd1501.png" src="_images/00faf7c1faf301e39f2b763089a81536674d891ff7f294a41fca0ca14dbd1501.png" />
+</div>
+</div>
+<section id="beam-stiffness-matrix">
+<h2>Beam Stiffness Matrix<a class="headerlink" href="#beam-stiffness-matrix" title="Permalink to this heading">#</a></h2>
+<p>The beam stiffness matrix is computed as <span class="math notranslate nohighlight">\(K_{ij} = \int_0^H EI\frac{d^2\phi_i}{dz^2}\frac{d^2\phi_j}{dz^2}dz\)</span>. Solving derivatives using Sympy in the cell below and factoring out <span class="math notranslate nohighlight">\(EI/H^3\)</span>, we obtain the following:</p>
+<br>
+<p><span class="math notranslate nohighlight">\(\begin{Bmatrix}
+F_1\\
+M_1\\
+F_2\\
+M_2
+\end{Bmatrix}\)</span> = <span class="math notranslate nohighlight">\(\frac{EI}{H^3}\)</span>
+<span class="math notranslate nohighlight">\(\begin{bmatrix}
+12 &amp; 6H &amp; -12 &amp; 6H\\
+6H &amp; 4H^2 &amp; -6H &amp; 2H^2\\
+-12 &amp; -6H &amp; 12 &amp; -6H\\
+6L &amp; 2H^2 &amp; -6H &amp; 4H^2
+\end{bmatrix}\)</span>
+<span class="math notranslate nohighlight">\(\begin{Bmatrix}
+u_1\\
+\theta_1\\
+u_2\\
+\theta_2
+\end{Bmatrix}\)</span></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">z</span> <span class="o">=</span> <span class="n">sym</span><span class="o">.</span><span class="n">Symbol</span><span class="p">(</span><span class="s1">&#39;z&#39;</span><span class="p">)</span>
+<span class="n">H</span> <span class="o">=</span> <span class="n">sym</span><span class="o">.</span><span class="n">Symbol</span><span class="p">(</span><span class="s1">&#39;H&#39;</span><span class="p">)</span>
+<span class="n">EI</span> <span class="o">=</span> <span class="n">sym</span><span class="o">.</span><span class="n">Symbol</span><span class="p">(</span><span class="s1">&#39;EI&#39;</span><span class="p">)</span>
+<span class="n">phi1</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">z</span><span class="o">/</span><span class="n">H</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">z</span><span class="o">/</span><span class="n">H</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">+</span><span class="mi">2</span><span class="o">*</span><span class="n">z</span><span class="o">/</span><span class="n">H</span><span class="p">)</span>
+<span class="n">phi2</span> <span class="o">=</span> <span class="n">z</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">z</span><span class="o">/</span><span class="n">H</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">z</span><span class="o">/</span><span class="n">H</span><span class="p">)</span>
+<span class="n">phi3</span> <span class="o">=</span> <span class="p">(</span><span class="n">z</span><span class="o">/</span><span class="n">H</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">z</span><span class="o">/</span><span class="n">H</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="mi">3</span><span class="o">-</span><span class="mi">2</span><span class="o">*</span><span class="n">z</span><span class="o">/</span><span class="n">H</span><span class="p">)</span>
+<span class="n">phi4</span> <span class="o">=</span> <span class="o">-</span><span class="n">z</span><span class="o">*</span><span class="n">z</span><span class="o">/</span><span class="n">H</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">z</span><span class="o">/</span><span class="n">H</span><span class="p">)</span>
+
+<span class="n">K11</span> <span class="o">=</span> <span class="n">EI</span><span class="o">*</span><span class="n">sym</span><span class="o">.</span><span class="n">integrate</span><span class="p">(</span><span class="n">sym</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">phi1</span><span class="p">,</span><span class="n">z</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span><span class="o">*</span><span class="n">sym</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">phi1</span><span class="p">,</span><span class="n">z</span><span class="p">,</span><span class="mi">2</span><span class="p">),(</span><span class="n">z</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="n">H</span><span class="p">))</span>
+<span class="n">K12</span> <span class="o">=</span> <span class="n">EI</span><span class="o">*</span><span class="n">sym</span><span class="o">.</span><span class="n">integrate</span><span class="p">(</span><span class="n">sym</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">phi1</span><span class="p">,</span><span class="n">z</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span><span class="o">*</span><span class="n">sym</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">phi2</span><span class="p">,</span><span class="n">z</span><span class="p">,</span><span class="mi">2</span><span class="p">),(</span><span class="n">z</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="n">H</span><span class="p">))</span>
+<span class="n">K13</span> <span class="o">=</span> <span class="n">EI</span><span class="o">*</span><span class="n">sym</span><span class="o">.</span><span class="n">integrate</span><span class="p">(</span><span class="n">sym</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">phi1</span><span class="p">,</span><span class="n">z</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span><span class="o">*</span><span class="n">sym</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">phi3</span><span class="p">,</span><span class="n">z</span><span class="p">,</span><span class="mi">2</span><span class="p">),(</span><span class="n">z</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="n">H</span><span class="p">))</span>
+<span class="n">K14</span> <span class="o">=</span> <span class="n">EI</span><span class="o">*</span><span class="n">sym</span><span class="o">.</span><span class="n">integrate</span><span class="p">(</span><span class="n">sym</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">phi1</span><span class="p">,</span><span class="n">z</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span><span class="o">*</span><span class="n">sym</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">phi4</span><span class="p">,</span><span class="n">z</span><span class="p">,</span><span class="mi">2</span><span class="p">),(</span><span class="n">z</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="n">H</span><span class="p">))</span>
+
+<span class="n">K21</span> <span class="o">=</span> <span class="n">EI</span><span class="o">*</span><span class="n">sym</span><span class="o">.</span><span class="n">integrate</span><span class="p">(</span><span class="n">sym</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">phi2</span><span class="p">,</span><span class="n">z</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span><span class="o">*</span><span class="n">sym</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">phi1</span><span class="p">,</span><span class="n">z</span><span class="p">,</span><span class="mi">2</span><span class="p">),(</span><span class="n">z</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="n">H</span><span class="p">))</span>
+<span class="n">K22</span> <span class="o">=</span> <span class="n">EI</span><span class="o">*</span><span class="n">sym</span><span class="o">.</span><span class="n">integrate</span><span class="p">(</span><span class="n">sym</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">phi2</span><span class="p">,</span><span class="n">z</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span><span class="o">*</span><span class="n">sym</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">phi2</span><span class="p">,</span><span class="n">z</span><span class="p">,</span><span class="mi">2</span><span class="p">),(</span><span class="n">z</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="n">H</span><span class="p">))</span>
+<span class="n">K23</span> <span class="o">=</span> <span class="n">EI</span><span class="o">*</span><span class="n">sym</span><span class="o">.</span><span class="n">integrate</span><span class="p">(</span><span class="n">sym</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">phi2</span><span class="p">,</span><span class="n">z</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span><span class="o">*</span><span class="n">sym</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">phi3</span><span class="p">,</span><span class="n">z</span><span class="p">,</span><span class="mi">2</span><span class="p">),(</span><span class="n">z</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="n">H</span><span class="p">))</span>
+<span class="n">K24</span> <span class="o">=</span> <span class="n">EI</span><span class="o">*</span><span class="n">sym</span><span class="o">.</span><span class="n">integrate</span><span class="p">(</span><span class="n">sym</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">phi2</span><span class="p">,</span><span class="n">z</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span><span class="o">*</span><span class="n">sym</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">phi4</span><span class="p">,</span><span class="n">z</span><span class="p">,</span><span class="mi">2</span><span class="p">),(</span><span class="n">z</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="n">H</span><span class="p">))</span>
+
+<span class="n">K31</span> <span class="o">=</span> <span class="n">EI</span><span class="o">*</span><span class="n">sym</span><span class="o">.</span><span class="n">integrate</span><span class="p">(</span><span class="n">sym</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">phi3</span><span class="p">,</span><span class="n">z</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span><span class="o">*</span><span class="n">sym</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">phi1</span><span class="p">,</span><span class="n">z</span><span class="p">,</span><span class="mi">2</span><span class="p">),(</span><span class="n">z</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="n">H</span><span class="p">))</span>
+<span class="n">K32</span> <span class="o">=</span> <span class="n">EI</span><span class="o">*</span><span class="n">sym</span><span class="o">.</span><span class="n">integrate</span><span class="p">(</span><span class="n">sym</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">phi3</span><span class="p">,</span><span class="n">z</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span><span class="o">*</span><span class="n">sym</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">phi2</span><span class="p">,</span><span class="n">z</span><span class="p">,</span><span class="mi">2</span><span class="p">),(</span><span class="n">z</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="n">H</span><span class="p">))</span>
+<span class="n">K33</span> <span class="o">=</span> <span class="n">EI</span><span class="o">*</span><span class="n">sym</span><span class="o">.</span><span class="n">integrate</span><span class="p">(</span><span class="n">sym</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">phi3</span><span class="p">,</span><span class="n">z</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span><span class="o">*</span><span class="n">sym</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">phi3</span><span class="p">,</span><span class="n">z</span><span class="p">,</span><span class="mi">2</span><span class="p">),(</span><span class="n">z</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="n">H</span><span class="p">))</span>
+<span class="n">K34</span> <span class="o">=</span> <span class="n">EI</span><span class="o">*</span><span class="n">sym</span><span class="o">.</span><span class="n">integrate</span><span class="p">(</span><span class="n">sym</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">phi3</span><span class="p">,</span><span class="n">z</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span><span class="o">*</span><span class="n">sym</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">phi4</span><span class="p">,</span><span class="n">z</span><span class="p">,</span><span class="mi">2</span><span class="p">),(</span><span class="n">z</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="n">H</span><span class="p">))</span>
+
+<span class="n">K41</span> <span class="o">=</span> <span class="n">EI</span><span class="o">*</span><span class="n">sym</span><span class="o">.</span><span class="n">integrate</span><span class="p">(</span><span class="n">sym</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">phi4</span><span class="p">,</span><span class="n">z</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span><span class="o">*</span><span class="n">sym</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">phi1</span><span class="p">,</span><span class="n">z</span><span class="p">,</span><span class="mi">2</span><span class="p">),(</span><span class="n">z</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="n">H</span><span class="p">))</span>
+<span class="n">K42</span> <span class="o">=</span> <span class="n">EI</span><span class="o">*</span><span class="n">sym</span><span class="o">.</span><span class="n">integrate</span><span class="p">(</span><span class="n">sym</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">phi4</span><span class="p">,</span><span class="n">z</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span><span class="o">*</span><span class="n">sym</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">phi2</span><span class="p">,</span><span class="n">z</span><span class="p">,</span><span class="mi">2</span><span class="p">),(</span><span class="n">z</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="n">H</span><span class="p">))</span>
+<span class="n">K43</span> <span class="o">=</span> <span class="n">EI</span><span class="o">*</span><span class="n">EI</span><span class="o">*</span><span class="n">sym</span><span class="o">.</span><span class="n">integrate</span><span class="p">(</span><span class="n">sym</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">phi4</span><span class="p">,</span><span class="n">z</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span><span class="o">*</span><span class="n">sym</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">phi3</span><span class="p">,</span><span class="n">z</span><span class="p">,</span><span class="mi">2</span><span class="p">),(</span><span class="n">z</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="n">H</span><span class="p">))</span>
+<span class="n">K44</span> <span class="o">=</span> <span class="n">EI</span><span class="o">*</span><span class="n">sym</span><span class="o">.</span><span class="n">integrate</span><span class="p">(</span><span class="n">sym</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">phi4</span><span class="p">,</span><span class="n">z</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span><span class="o">*</span><span class="n">sym</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">phi4</span><span class="p">,</span><span class="n">z</span><span class="p">,</span><span class="mi">2</span><span class="p">),(</span><span class="n">z</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="n">H</span><span class="p">))</span>
+
+<span class="n">sym</span><span class="o">.</span><span class="n">Matrix</span><span class="p">([[</span><span class="n">K11</span><span class="p">,</span><span class="n">K12</span><span class="p">,</span><span class="n">K13</span><span class="p">,</span><span class="n">K14</span><span class="p">],[</span><span class="n">K21</span><span class="p">,</span><span class="n">K22</span><span class="p">,</span><span class="n">K23</span><span class="p">,</span><span class="n">K24</span><span class="p">],[</span><span class="n">K31</span><span class="p">,</span><span class="n">K32</span><span class="p">,</span><span class="n">K33</span><span class="p">,</span><span class="n">K34</span><span class="p">],[</span><span class="n">K41</span><span class="p">,</span><span class="n">K42</span><span class="p">,</span><span class="n">K43</span><span class="p">,</span><span class="n">K44</span><span class="p">]])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[\begin{split}\displaystyle \left[\begin{matrix}\frac{12 EI}{H^{3}} &amp; \frac{6 EI}{H^{2}} &amp; - \frac{12 EI}{H^{3}} &amp; \frac{6 EI}{H^{2}}\\\frac{6 EI}{H^{2}} &amp; \frac{4 EI}{H} &amp; - \frac{6 EI}{H^{2}} &amp; \frac{2 EI}{H}\\- \frac{12 EI}{H^{3}} &amp; - \frac{6 EI}{H^{2}} &amp; \frac{12 EI}{H^{3}} &amp; - \frac{6 EI}{H^{2}}\\\frac{6 EI}{H^{2}} &amp; \frac{2 EI}{H} &amp; - \frac{6 EI^{2}}{H^{2}} &amp; \frac{4 EI}{H}\end{matrix}\right]\end{split}\]</div>
+</div>
+</div>
+</section>
+<section id="winkler-stiffness-matrix">
+<h2>Winkler Stiffness Matrix<a class="headerlink" href="#winkler-stiffness-matrix" title="Permalink to this heading">#</a></h2>
+<p>The stiffness intensity <span class="math notranslate nohighlight">\(k_y^i\)</span> has units of <span class="math notranslate nohighlight">\(F/L/L\)</span>, and the intensity must be divided between the two p-y elements. Using the tributary length method, the stiffness of each p-y element is <span class="math notranslate nohighlight">\(k_y^i dz/2\)</span>. Noting that forces are positive from left-to-right, we obtain the following stiffness matrix:</p>
+<p><span class="math notranslate nohighlight">\(\begin{Bmatrix}
+F_1\\
+F_2\\
+F_3\\
+F_4
+\end{Bmatrix}\)</span> = <span class="math notranslate nohighlight">\(\frac{k_y^i dz}{2}\)</span>
+<span class="math notranslate nohighlight">\(\begin{bmatrix}
+1 &amp; 0 &amp; -1 &amp; 0\\
+0 &amp; 1 &amp; 0 &amp; -1\\
+-1 &amp; 0 &amp; 1 &amp; 0\\
+0 &amp; -1 &amp; 0 &amp; 1
+\end{bmatrix}\)</span>
+<span class="math notranslate nohighlight">\(\begin{Bmatrix}
+u_1\\
+u_2\\
+u_3\\
+u_4
+\end{Bmatrix}\)</span></p>
+<p>Noting that <span class="math notranslate nohighlight">\(u_3\)</span> = <span class="math notranslate nohighlight">\(u_4\)</span> = 0, we can condense out the bottom two rows and right two columns. The resulting equation is:</p>
+<p><span class="math notranslate nohighlight">\(\begin{Bmatrix}
+F_1\\
+F_2
+\end{Bmatrix}\)</span> = <span class="math notranslate nohighlight">\(\frac{k_y^i dz}{2}\)</span>
+<span class="math notranslate nohighlight">\(\begin{bmatrix}
+1 &amp; 0\\
+0 &amp; 1\\
+\end{bmatrix}\)</span>
+<span class="math notranslate nohighlight">\(\begin{Bmatrix}
+u_1\\
+u_2
+\end{Bmatrix}\)</span></p>
+</section>
+<section id="combined-stiffness-matrix">
+<h2>Combined Stiffness Matrix<a class="headerlink" href="#combined-stiffness-matrix" title="Permalink to this heading">#</a></h2>
+<p>We can now combine the two stiffness matrices into a single matrix by combining contributions to nodes 1 and 2:</p>
+<p><span class="math notranslate nohighlight">\(\begin{Bmatrix}
+F_1\\
+M_1\\
+F_2\\
+M_2
+\end{Bmatrix}\)</span> =
+<span class="math notranslate nohighlight">\(\begin{bmatrix}
+12\frac{EI}{H^3} + \frac{k_y^i dz}{2} &amp; 6\frac{EI}{H^2} &amp; -12\frac{EI}{H^3} &amp; 6\frac{EI}{H^2}\\
+6\frac{EI}{H^2} &amp; 4\frac{EI}{H} &amp; -6\frac{EI}{H^2} &amp; 2\frac{EI}{H} \\
+-12\frac{EI}{H^3} &amp; -6\frac{EI}{H^2} &amp; 12\frac{EI}{H^3} + \frac{k_y^i dz}{2} &amp; -6\frac{EI}{H^2}\\
+6\frac{EI}{H^2} &amp; 2\frac{EI}{H} &amp; -6\frac{EI}{H^2} &amp; 4\frac{EI}{H}
+\end{bmatrix}\)</span>
+<span class="math notranslate nohighlight">\(\begin{Bmatrix}
+u_1\\
+\theta_1\\
+u_2\\
+\theta_2
+\end{Bmatrix}\)</span></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Element stiffness matrix equations</span>
+<span class="c1"># Individual equations are provided for the beam-column matrix and for the p-y matrix because they are useful later for computing internal forces</span>
+<span class="k">def</span> <span class="nf">get_Kbeam</span><span class="p">(</span><span class="n">EI</span><span class="p">,</span><span class="n">H</span><span class="p">):</span>
+    <span class="n">Kbeam</span> <span class="o">=</span> <span class="n">EI</span><span class="o">/</span><span class="n">H</span><span class="o">**</span><span class="mi">3</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">([</span>
+        <span class="p">[</span><span class="mi">12</span><span class="p">,</span> <span class="mi">6</span><span class="o">*</span><span class="n">H</span><span class="p">,</span> <span class="o">-</span><span class="mi">12</span><span class="p">,</span> <span class="mi">6</span><span class="o">*</span><span class="n">H</span><span class="p">],</span>
+        <span class="p">[</span><span class="mi">6</span><span class="o">*</span><span class="n">H</span><span class="p">,</span> <span class="mi">4</span><span class="o">*</span><span class="n">H</span><span class="o">**</span><span class="mi">2</span><span class="p">,</span> <span class="o">-</span><span class="mi">6</span><span class="o">*</span><span class="n">H</span><span class="p">,</span> <span class="mi">2</span><span class="o">*</span><span class="n">H</span><span class="o">**</span><span class="mi">2</span><span class="p">],</span>
+        <span class="p">[</span><span class="o">-</span><span class="mi">12</span><span class="p">,</span> <span class="o">-</span><span class="mi">6</span><span class="o">*</span><span class="n">H</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="o">-</span><span class="mi">6</span><span class="o">*</span><span class="n">H</span><span class="p">],</span>
+        <span class="p">[</span><span class="mi">6</span><span class="o">*</span><span class="n">H</span><span class="p">,</span> <span class="mi">2</span><span class="o">*</span><span class="n">H</span><span class="o">**</span><span class="mi">2</span><span class="p">,</span> <span class="o">-</span><span class="mi">6</span><span class="o">*</span><span class="n">H</span><span class="p">,</span> <span class="mi">4</span><span class="o">*</span><span class="n">H</span><span class="o">**</span><span class="mi">2</span><span class="p">]</span>        
+    <span class="p">])</span>
+    <span class="k">return</span> <span class="n">Kbeam</span>
+
+<span class="k">def</span> <span class="nf">get_Kpy</span><span class="p">(</span><span class="n">kyi</span><span class="p">,</span><span class="n">H</span><span class="p">):</span>
+    <span class="n">Kpy</span> <span class="o">=</span> <span class="n">kyi</span><span class="o">*</span><span class="n">H</span><span class="o">/</span><span class="mf">2.0</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">([</span>
+        <span class="p">[</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">],</span>
+        <span class="p">[</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">],</span>
+        <span class="p">[</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">],</span>
+        <span class="p">[</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">]</span>
+    <span class="p">])</span>
+    <span class="k">return</span> <span class="n">Kpy</span>
+    
+<span class="k">def</span> <span class="nf">get_Kele</span><span class="p">(</span><span class="n">EI</span><span class="p">,</span><span class="n">kpy</span><span class="p">,</span><span class="n">H</span><span class="p">):</span>
+    <span class="n">Kele</span> <span class="o">=</span> <span class="n">get_Kbeam</span><span class="p">(</span><span class="n">EI</span><span class="p">,</span><span class="n">H</span><span class="p">)</span> <span class="o">+</span> <span class="n">get_Kpy</span><span class="p">(</span><span class="n">kyi</span><span class="p">,</span><span class="n">H</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">Kele</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="assembling-global-stiffness-matrix-from-element-stiffness-matrices">
+<h2>Assembling global stiffness matrix from element stiffness matrices<a class="headerlink" href="#assembling-global-stiffness-matrix-from-element-stiffness-matrices" title="Permalink to this heading">#</a></h2>
+<p>After forming the stiffness matrix for each element, they must be combined into a global stiffness matrix based on nodal connectivity. For simplicity we herein assume that the nodes are numbered in order such that the beam column connects 1 to 2, 2 to 3, and so forth, and also that <span class="math notranslate nohighlight">\(dz\)</span>, <span class="math notranslate nohighlight">\(EI\)</span>, and <span class="math notranslate nohighlight">\(k_y^i\)</span> are constant. We later provide an example with variable <span class="math notranslate nohighlight">\(EI\)</span> and <span class="math notranslate nohighlight">\(k_y^i\)</span> values. The approach adopted here is to initialize the global stiffness matrix <span class="math notranslate nohighlight">\(K_{global}\)</span> to zeros, and add the element stiffness matrices to it in a loop over all elements.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Now solve using finite element method</span>
+
+<span class="c1"># Input parameters</span>
+<span class="n">Nele</span> <span class="o">=</span> <span class="mi">10</span>                         <span class="c1"># Number of beam elements</span>
+<span class="n">H</span> <span class="o">=</span> <span class="mf">4.0</span>                           <span class="c1"># Total length of beam</span>
+<span class="n">EI</span> <span class="o">=</span> <span class="mi">1000</span>                         <span class="c1"># Flexural stiffness of beam</span>
+<span class="n">kyi</span> <span class="o">=</span> <span class="mi">100</span>                         <span class="c1"># Winkler stiffness intensity</span>
+<span class="n">dx2</span> <span class="o">=</span> <span class="n">H</span><span class="o">/</span><span class="n">Nele</span>                      <span class="c1"># Element length</span>
+<span class="n">x2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">H</span><span class="p">,</span><span class="n">Nele</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>      <span class="c1"># Array of nodal locations</span>
+<span class="n">x2_ele</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">Nele</span><span class="p">)</span>
+<span class="n">x2_ele</span><span class="p">[</span><span class="mi">0</span><span class="p">::</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="n">x2</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="n">Nele</span><span class="p">]</span>
+<span class="n">x2_ele</span><span class="p">[</span><span class="mi">1</span><span class="p">::</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="n">x2</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="n">Nele</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">ele_sign</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">Nele</span><span class="p">)</span>
+<span class="n">ele_sign</span><span class="p">[</span><span class="mi">0</span><span class="p">::</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">ele_sign</span><span class="p">[</span><span class="mi">1</span><span class="p">::</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
+<span class="c1"># Boundary conditions array. This array is a bit different than for the analytical solution.</span>
+<span class="sd">&#39;&#39;&#39;Boundary conditions. Specify numpy array with four entries; one for each BC. </span>
+<span class="sd">First element indicates BC type (0 = disp, 1 = slope, 2 = moment, 3 = shear)</span>
+<span class="sd">Second element indicates BC value</span>
+<span class="sd">Third element indicates node number</span>
+<span class="sd">e.g. [0, 0.1, 0.0] specifies displacement = 0 at z=0.</span>
+<span class="sd">     [1, 0.0, H] specifies rotation = 0 at z=L.</span>
+<span class="sd">&#39;&#39;&#39;</span>
+
+<span class="n">Kglobal</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">2</span><span class="o">*</span><span class="p">(</span><span class="n">Nele</span><span class="o">+</span><span class="mi">1</span><span class="p">),</span><span class="mi">2</span><span class="o">*</span><span class="p">(</span><span class="n">Nele</span><span class="o">+</span><span class="mi">1</span><span class="p">)))</span>  
+<span class="n">I</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">Nele</span><span class="p">):</span>
+    <span class="n">Kele</span> <span class="o">=</span> <span class="n">get_Kele</span><span class="p">(</span><span class="n">EI</span><span class="p">,</span><span class="n">kyi</span><span class="p">,</span><span class="n">dx2</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">4</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">4</span><span class="p">):</span>
+            <span class="n">Kglobal</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="n">I</span><span class="p">][</span><span class="n">j</span><span class="o">+</span><span class="n">I</span><span class="p">]</span> <span class="o">+=</span> <span class="n">Kele</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span>
+    <span class="n">I</span><span class="o">+=</span><span class="mi">2</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="solving-the-system-of-equations">
+<h2>Solving the System of Equations<a class="headerlink" href="#solving-the-system-of-equations" title="Permalink to this heading">#</a></h2>
+<p>Before solving the system of equations, a force array is constructed from the imposed force boundary conditions, and a displacement array is constructed from the imposed displacement boundary conditions. The displacement boundary conditions are then condensed out of the force vector and global stiffness matrix to solve for the unknown displacements. The unknown displacements are then inserted into the displacement array. Finally, internal beam forces are computed using the individual beam element stiffness matrices, and the subgrade reaction pressures are computed from the Winkler spring forces divided by the tributary length.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define boundary conditions</span>
+<span class="n">BCs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">([</span>
+    <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mf">0.1</span><span class="p">,</span><span class="mi">1</span><span class="p">],</span>
+    <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mf">0.0</span><span class="p">,</span><span class="mi">1</span><span class="p">],</span>
+    <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mf">0.0</span><span class="p">,</span><span class="n">Nele</span><span class="o">+</span><span class="mi">1</span><span class="p">],</span>
+    <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mf">0.0</span><span class="p">,</span><span class="n">Nele</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span>    
+<span class="p">])</span>
+
+<span class="n">BCs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">([</span>
+    <span class="p">[</span><span class="mi">3</span><span class="p">,</span><span class="mf">33.2510024267067</span><span class="p">,</span><span class="mi">1</span><span class="p">],</span>
+    <span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="mf">45.4483024248866</span><span class="p">,</span><span class="mi">1</span><span class="p">],</span>
+    <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mf">0.0</span><span class="p">,</span><span class="n">Nele</span><span class="o">+</span><span class="mi">1</span><span class="p">],</span>
+    <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mf">0.0</span><span class="p">,</span><span class="n">Nele</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span>    
+<span class="p">])</span>
+
+<span class="c1"># Create force boundary condition array</span>
+<span class="n">F</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="p">(</span><span class="n">Nele</span><span class="o">+</span><span class="mi">1</span><span class="p">))</span>
+<span class="k">for</span> <span class="n">bc</span> <span class="ow">in</span> <span class="n">BCs</span><span class="p">:</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">bc</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="mi">3</span><span class="p">):</span>
+        <span class="n">F</span><span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="p">(</span><span class="n">bc</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">-</span><span class="mi">1</span><span class="p">))]</span> <span class="o">=</span> <span class="n">bc</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+    <span class="k">elif</span><span class="p">(</span><span class="n">bc</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="mi">2</span><span class="p">):</span>
+        <span class="n">F</span><span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="p">(</span><span class="n">bc</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span><span class="p">)]</span> <span class="o">=</span> <span class="n">bc</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+
+<span class="c1"># Create displacement boundary condition array</span>
+<span class="n">u2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="p">(</span><span class="n">Nele</span><span class="o">+</span><span class="mi">1</span><span class="p">))</span>
+<span class="k">for</span> <span class="n">bc</span> <span class="ow">in</span> <span class="n">BCs</span><span class="p">:</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">bc</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">):</span>
+        <span class="n">u2</span><span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="p">(</span><span class="n">bc</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">-</span><span class="mi">1</span><span class="p">))]</span> <span class="o">=</span> <span class="n">bc</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+    <span class="k">elif</span><span class="p">(</span><span class="n">bc</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1</span><span class="p">):</span>
+        <span class="n">u2</span><span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="p">(</span><span class="n">bc</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span><span class="p">)]</span> <span class="o">=</span> <span class="n">bc</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+
+<span class="c1"># Now impose essential BC&#39;s by condensing matrix, and solve for unknown displacements</span>
+<span class="n">F</span> <span class="o">=</span> <span class="n">F</span> <span class="o">-</span> <span class="n">Kglobal</span><span class="nd">@u2</span>  <span class="c1"># compute forces caused by essential boundary conditions</span>
+<span class="n">mask</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">full</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="p">(</span><span class="n">Nele</span><span class="o">+</span><span class="mi">1</span><span class="p">),</span><span class="kc">True</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">bc</span> <span class="ow">in</span> <span class="n">BCs</span><span class="p">:</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">bc</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">==</span><span class="mi">0</span><span class="p">):</span>
+        <span class="n">mask</span><span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="p">(</span><span class="n">bc</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">-</span><span class="mi">1</span><span class="p">))]</span> <span class="o">=</span> <span class="kc">False</span>
+    <span class="k">elif</span><span class="p">(</span><span class="n">bc</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">==</span><span class="mi">1</span><span class="p">):</span>
+        <span class="n">mask</span><span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="p">(</span><span class="n">bc</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span><span class="p">)]</span> <span class="o">=</span> <span class="kc">False</span>
+<span class="n">u_new</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">Kglobal</span><span class="p">[</span><span class="n">mask</span><span class="p">]</span><span class="o">.</span><span class="n">T</span><span class="p">[</span><span class="n">mask</span><span class="p">]</span><span class="o">.</span><span class="n">T</span><span class="p">,</span><span class="n">F</span><span class="p">[</span><span class="n">mask</span><span class="p">])</span>
+
+<span class="c1"># assemble the new displacements into the overall displacement array</span>
+<span class="n">u2</span><span class="p">[</span><span class="n">mask</span><span class="p">]</span> <span class="o">=</span> <span class="n">u_new</span>
+
+<span class="c1"># assemble internal forces based on individual element stiffness matrices</span>
+<span class="n">F_beam</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="mi">4</span><span class="o">*</span><span class="n">Nele</span><span class="p">)</span>
+<span class="n">F_py</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="mi">4</span><span class="o">*</span><span class="n">Nele</span><span class="p">)</span>
+<span class="n">I</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">Nele</span><span class="p">):</span>
+    <span class="n">Kbeam</span> <span class="o">=</span> <span class="n">get_Kbeam</span><span class="p">(</span><span class="n">EI</span><span class="p">,</span><span class="n">dx2</span><span class="p">)</span>
+    <span class="n">F_beam</span><span class="p">[</span><span class="mi">2</span><span class="o">*</span><span class="n">I</span><span class="p">:</span><span class="mi">2</span><span class="o">*</span><span class="n">I</span><span class="o">+</span><span class="mi">4</span><span class="p">]</span> <span class="o">=</span> <span class="n">Kbeam</span><span class="nd">@u2</span><span class="p">[</span><span class="n">I</span><span class="p">:</span><span class="n">I</span><span class="o">+</span><span class="mi">4</span><span class="p">]</span>
+    <span class="n">Kpy</span> <span class="o">=</span> <span class="n">get_Kpy</span><span class="p">(</span><span class="n">kyi</span><span class="p">,</span><span class="n">dx2</span><span class="p">)</span>
+    <span class="n">F_py</span><span class="p">[</span><span class="mi">2</span><span class="o">*</span><span class="n">I</span><span class="p">:</span><span class="mi">2</span><span class="o">*</span><span class="n">I</span><span class="o">+</span><span class="mi">4</span><span class="p">]</span> <span class="o">=</span> <span class="n">Kpy</span><span class="nd">@u2</span><span class="p">[</span><span class="n">I</span><span class="p">:</span><span class="n">I</span><span class="o">+</span><span class="mi">4</span><span class="p">]</span>
+    <span class="n">I</span><span class="o">+=</span><span class="mi">2</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">ncols</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span><span class="n">sharey</span><span class="o">=</span><span class="s1">&#39;row&#39;</span><span class="p">,</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span><span class="mi">4</span><span class="p">))</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">u</span><span class="p">,</span><span class="n">x</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;exact&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">u2</span><span class="p">[</span><span class="mi">0</span><span class="p">::</span><span class="mi">2</span><span class="p">],</span><span class="n">x2</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;FEM&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">theta</span><span class="p">,</span><span class="n">x</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">u2</span><span class="p">[</span><span class="mi">1</span><span class="p">::</span><span class="mi">2</span><span class="p">],</span><span class="n">x2</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">M</span><span class="p">,</span><span class="n">x</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">F_beam</span><span class="p">[</span><span class="mi">1</span><span class="p">::</span><span class="mi">2</span><span class="p">]</span><span class="o">*-</span><span class="n">ele_sign</span><span class="p">,</span><span class="n">x2_ele</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">V</span><span class="p">,</span><span class="n">x</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">F_beam</span><span class="p">[</span><span class="mi">0</span><span class="p">::</span><span class="mi">2</span><span class="p">]</span><span class="o">*</span><span class="n">ele_sign</span><span class="p">,</span><span class="n">x2_ele</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">p</span><span class="p">,</span><span class="n">x</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="o">*</span><span class="n">F_py</span><span class="p">[</span><span class="mi">0</span><span class="p">::</span><span class="mi">2</span><span class="p">]</span><span class="o">/</span><span class="n">dx2</span><span class="p">,</span><span class="n">x2_ele</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">invert_yaxis</span><span class="p">()</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;depth&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;u&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$\theta$&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;M&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;V&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;p&#39;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="n">ax</span><span class="p">:</span>
+    <span class="n">a</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/0e4cc5ade289dc09a65e3c8696e5a409d9b115781ddf1dcb44e33fc417eecbf6.png" src="_images/0e4cc5ade289dc09a65e3c8696e5a409d9b115781ddf1dcb44e33fc417eecbf6.png" />
+</div>
+</div>
+</section>
+<section id="a-few-comments">
+<h2>A few comments<a class="headerlink" href="#a-few-comments" title="Permalink to this heading">#</a></h2>
+<p>You might notice that the shear distribution is piece-wise constant, with discontinuities at the node locations. The reason for this behavior is that the Winkler stiffness intensity is lumped at the nodes, and no forces act on the beam elements in between the nodes. This is an outcome of using Hermite cubic polynomial shape functions, which have zero pressures acting on the beam between the nodes. Furthermore, the shear at the top of the beam is less than the exact solution. That’s because when a displacement is imposed on top of the beam, some of the force goes into the beam element and some goes into the Winkler spring. The orange line above represents the shear in the beam. These differences become smaller when more elements are utilized.</p>
+</section>
+<section id="solution-with-vertically-variable-k-y-i">
+<h2>Solution with vertically variable <span class="math notranslate nohighlight">\(k_y^i\)</span><a class="headerlink" href="#solution-with-vertically-variable-k-y-i" title="Permalink to this heading">#</a></h2>
+<p>The solution above has an analytical solution, which is nice because we can validate the finite element implementation against a known solution. However, we would never need the finite element method if every problem was so simple. The script below develops a solution for a vertically variable Winkler stiffness intensity. We adopt the form utilized by <a class="reference external" href="https://ascelibrary.org/doi/10.1061/%28ASCE%29GT.1943-5606.0002374">Brandenberg et al (2020)</a>:</p>
+<p><span class="math notranslate nohighlight">\(k_y^i\left(z\right) = k_{yH}^i\left[b+\left(1+b\right)\frac{z}{H}\right]^{2n}\)</span></p>
+<p>where <span class="math notranslate nohighlight">\(k_{yH}^i\)</span> = Winkler stiffness intensity at the bottom of the beam, <span class="math notranslate nohighlight">\(b\)</span> and <span class="math notranslate nohighlight">\(n\)</span> are model coefficients that control the shape of the variation of <span class="math notranslate nohighlight">\(k_y^i\)</span> with depth, and <span class="math notranslate nohighlight">\(H\)</span> is the length of the beam. For static conditions, a rigid wall, and an infinitely long soil deposit, the value of $k_{yH}^i is given by:</p>
+<p><span class="math notranslate nohighlight">\(k_{yH}^i = \frac{G_H}{H}\frac{2}{\sqrt{\left(1-\nu\right)\left(2-\nu\right)}}\left(1.06 e^{-1.97\left(1-2n\right)-3.01b}+\frac{\pi}{2}\right)\)</span></p>
+<p>We adopt the following parameters:</p>
+<p><span class="math notranslate nohighlight">\(G_H = \rho V_S^2\)</span><br />
+<span class="math notranslate nohighlight">\(\rho\)</span> = 2.0 <span class="math notranslate nohighlight">\(Mg/m^3\)</span><br />
+<span class="math notranslate nohighlight">\(V_{SH}\)</span> = 200 m/s<br />
+<span class="math notranslate nohighlight">\(b\)</span> = 0.1<br />
+<span class="math notranslate nohighlight">\(n\)</span> = 0.25</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="k">def</span> <span class="nf">get_kyi</span><span class="p">(</span><span class="n">kyiH</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">z</span><span class="p">,</span><span class="n">H</span><span class="p">,</span><span class="n">n</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">kyiH</span><span class="o">*</span><span class="p">(</span><span class="n">b</span><span class="o">+</span><span class="p">(</span><span class="mi">1</span><span class="o">+</span><span class="n">b</span><span class="p">)</span><span class="o">*</span><span class="n">z</span><span class="o">/</span><span class="n">H</span><span class="p">)</span><span class="o">**</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">n</span><span class="p">)</span>
+
+<span class="n">rho</span> <span class="o">=</span> <span class="mf">2.0</span>
+<span class="n">VsH</span> <span class="o">=</span> <span class="mi">200</span>
+<span class="n">GH</span> <span class="o">=</span> <span class="n">rho</span><span class="o">*</span><span class="n">VsH</span><span class="o">**</span><span class="mi">2</span>
+<span class="n">b</span> <span class="o">=</span> <span class="mf">0.1</span>
+<span class="n">n</span> <span class="o">=</span> <span class="mf">0.25</span>
+<span class="n">nu</span> <span class="o">=</span> <span class="mf">0.3</span>
+<span class="n">kyiH</span> <span class="o">=</span> <span class="n">GH</span><span class="o">/</span><span class="n">H</span><span class="o">*</span><span class="mi">2</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">((</span><span class="mi">1</span><span class="o">-</span><span class="n">nu</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="mi">2</span><span class="o">-</span><span class="n">nu</span><span class="p">))</span><span class="o">*</span><span class="p">(</span><span class="mf">1.06</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="mf">1.97</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="mi">2</span><span class="o">*</span><span class="n">n</span><span class="p">)</span><span class="o">-</span><span class="mf">3.01</span><span class="o">*</span><span class="n">b</span><span class="p">)</span><span class="o">+</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">Vs</span> <span class="o">=</span> <span class="n">VsH</span><span class="o">*</span><span class="p">(</span><span class="n">b</span><span class="o">+</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">b</span><span class="p">)</span><span class="o">*</span><span class="n">x</span><span class="o">/</span><span class="n">H</span><span class="p">)</span><span class="o">**</span><span class="n">n</span>
+<span class="n">kyi</span> <span class="o">=</span> <span class="n">get_kyi</span><span class="p">(</span><span class="n">kyiH</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">x</span><span class="p">,</span><span class="n">H</span><span class="p">,</span><span class="n">n</span><span class="p">)</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">ncols</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">sharey</span><span class="o">=</span><span class="s1">&#39;row&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">Vs</span><span class="p">,</span><span class="n">x</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">kyi</span><span class="p">,</span><span class="n">x</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">invert_yaxis</span><span class="p">()</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$z$ (m)&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$V_S$ (m/s)&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$k_y^i$ (kN/m/m)&#39;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="n">ax</span><span class="p">:</span>
+    <span class="n">a</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">,</span><span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/6f96ec08be1d8fb3df72b6249267637367c3d2dd3a747518c45051c9e064a950.png" src="_images/6f96ec08be1d8fb3df72b6249267637367c3d2dd3a747518c45051c9e064a950.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Nele</span> <span class="o">=</span> <span class="mi">100</span>                        <span class="c1"># Number of beam elements</span>
+<span class="n">H</span> <span class="o">=</span> <span class="mf">4.0</span>                           <span class="c1"># Total length of beam</span>
+<span class="n">EI</span> <span class="o">=</span> <span class="mi">100000</span>                       <span class="c1"># Flexural stiffness of beam</span>
+<span class="n">dx2</span> <span class="o">=</span> <span class="n">H</span><span class="o">/</span><span class="n">Nele</span>                      <span class="c1"># Element length</span>
+<span class="n">x2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">H</span><span class="p">,</span><span class="n">Nele</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>      <span class="c1"># Array of nodal locations</span>
+<span class="n">x2_ele</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">Nele</span><span class="p">)</span>
+<span class="n">x2_ele</span><span class="p">[</span><span class="mi">0</span><span class="p">::</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="n">x2</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="n">Nele</span><span class="p">]</span>
+<span class="n">x2_ele</span><span class="p">[</span><span class="mi">1</span><span class="p">::</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="n">x2</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="n">Nele</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">ele_sign</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">Nele</span><span class="p">)</span>
+<span class="n">ele_sign</span><span class="p">[</span><span class="mi">0</span><span class="p">::</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">ele_sign</span><span class="p">[</span><span class="mi">1</span><span class="p">::</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
+
+<span class="c1"># We now have to define the stiffness matrix for variable kyi</span>
+<span class="k">def</span> <span class="nf">get_Kpy_variable</span><span class="p">(</span><span class="n">kyiH</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">z1</span><span class="p">,</span><span class="n">z2</span><span class="p">,</span><span class="n">H</span><span class="p">,</span><span class="n">n</span><span class="p">):</span>
+    <span class="n">kyi1</span> <span class="o">=</span> <span class="n">get_kyi</span><span class="p">(</span><span class="n">kyiH</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">z1</span><span class="p">,</span><span class="n">H</span><span class="p">,</span><span class="n">n</span><span class="p">)</span>
+    <span class="n">kyi2</span> <span class="o">=</span> <span class="n">get_kyi</span><span class="p">(</span><span class="n">kyiH</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">z2</span><span class="p">,</span><span class="n">H</span><span class="p">,</span><span class="n">n</span><span class="p">)</span>
+    <span class="n">dz</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">z2</span><span class="o">-</span><span class="n">z1</span><span class="p">)</span>
+    <span class="n">Kpy</span> <span class="o">=</span> <span class="n">dz</span><span class="o">/</span><span class="mf">2.0</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">([</span>
+        <span class="p">[</span><span class="n">kyi1</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">],</span>
+        <span class="p">[</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">],</span>
+        <span class="p">[</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="n">kyi2</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">],</span>
+        <span class="p">[</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">]</span>
+    <span class="p">])</span>
+    <span class="k">return</span> <span class="n">Kpy</span>
+
+<span class="c1"># Define global force vector</span>
+<span class="n">Kglobal</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">2</span><span class="o">*</span><span class="p">(</span><span class="n">Nele</span><span class="o">+</span><span class="mi">1</span><span class="p">),</span><span class="mi">2</span><span class="o">*</span><span class="p">(</span><span class="n">Nele</span><span class="o">+</span><span class="mi">1</span><span class="p">)))</span>  
+<span class="n">I</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">Nele</span><span class="p">):</span>
+    <span class="n">Kbeam</span> <span class="o">=</span> <span class="n">get_Kbeam</span><span class="p">(</span><span class="n">EI</span><span class="p">,</span><span class="n">dx2</span><span class="p">)</span>
+    <span class="n">Kpy</span> <span class="o">=</span> <span class="n">get_Kpy_variable</span><span class="p">(</span><span class="n">kyiH</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">x2_ele</span><span class="p">[</span><span class="mi">2</span><span class="o">*</span><span class="n">k</span><span class="p">],</span><span class="n">x2_ele</span><span class="p">[</span><span class="mi">2</span><span class="o">*</span><span class="n">k</span><span class="o">+</span><span class="mi">1</span><span class="p">],</span><span class="n">H</span><span class="p">,</span><span class="n">n</span><span class="p">)</span>
+    <span class="n">Kele</span> <span class="o">=</span> <span class="n">Kbeam</span> <span class="o">+</span> <span class="n">Kpy</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">4</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">4</span><span class="p">):</span>
+            <span class="n">Kglobal</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="n">I</span><span class="p">][</span><span class="n">j</span><span class="o">+</span><span class="n">I</span><span class="p">]</span> <span class="o">+=</span> <span class="n">Kele</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span>
+    <span class="n">I</span><span class="o">+=</span><span class="mi">2</span>
+
+<span class="c1"># Define boundary conditions</span>
+<span class="n">BCs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">([</span>
+    <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mf">0.1</span><span class="p">,</span><span class="mi">1</span><span class="p">],</span>
+    <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mf">0.0</span><span class="p">,</span><span class="mi">1</span><span class="p">],</span>
+    <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mf">0.0</span><span class="p">,</span><span class="n">Nele</span><span class="o">+</span><span class="mi">1</span><span class="p">],</span>
+    <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mf">0.0</span><span class="p">,</span><span class="n">Nele</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span>    
+<span class="p">])</span>
+
+<span class="c1"># Create force boundary condition array</span>
+<span class="n">F</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="p">(</span><span class="n">Nele</span><span class="o">+</span><span class="mi">1</span><span class="p">))</span>
+<span class="k">for</span> <span class="n">bc</span> <span class="ow">in</span> <span class="n">BCs</span><span class="p">:</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">bc</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="mi">3</span><span class="p">):</span>
+        <span class="n">F</span><span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="p">(</span><span class="n">bc</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">-</span><span class="mi">1</span><span class="p">))]</span> <span class="o">=</span> <span class="n">bc</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+    <span class="k">elif</span><span class="p">(</span><span class="n">bc</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="mi">2</span><span class="p">):</span>
+        <span class="n">F</span><span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="p">(</span><span class="n">bc</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span><span class="p">)]</span> <span class="o">=</span> <span class="n">bc</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+
+<span class="c1"># Create displacement boundary condition array</span>
+<span class="n">u2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="p">(</span><span class="n">Nele</span><span class="o">+</span><span class="mi">1</span><span class="p">))</span>
+<span class="k">for</span> <span class="n">bc</span> <span class="ow">in</span> <span class="n">BCs</span><span class="p">:</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">bc</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">):</span>
+        <span class="n">u2</span><span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="p">(</span><span class="n">bc</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">-</span><span class="mi">1</span><span class="p">))]</span> <span class="o">=</span> <span class="n">bc</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+    <span class="k">elif</span><span class="p">(</span><span class="n">bc</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1</span><span class="p">):</span>
+        <span class="n">u2</span><span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="p">(</span><span class="n">bc</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span><span class="p">)]</span> <span class="o">=</span> <span class="n">bc</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+
+<span class="c1"># Now impose essential BC&#39;s by condensing matrix, and solve for unknown displacements</span>
+<span class="n">F</span> <span class="o">=</span> <span class="n">F</span> <span class="o">-</span> <span class="n">Kglobal</span><span class="nd">@u2</span>  <span class="c1"># compute forces caused by essential boundary conditions</span>
+<span class="n">mask</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">full</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="p">(</span><span class="n">Nele</span><span class="o">+</span><span class="mi">1</span><span class="p">),</span><span class="kc">True</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">bc</span> <span class="ow">in</span> <span class="n">BCs</span><span class="p">:</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">bc</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">==</span><span class="mi">0</span><span class="p">):</span>
+        <span class="n">mask</span><span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="p">(</span><span class="n">bc</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">-</span><span class="mi">1</span><span class="p">))]</span> <span class="o">=</span> <span class="kc">False</span>
+    <span class="k">elif</span><span class="p">(</span><span class="n">bc</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">==</span><span class="mi">1</span><span class="p">):</span>
+        <span class="n">mask</span><span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="p">(</span><span class="n">bc</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span><span class="p">)]</span> <span class="o">=</span> <span class="kc">False</span>
+<span class="n">u_new</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">Kglobal</span><span class="p">[</span><span class="n">mask</span><span class="p">]</span><span class="o">.</span><span class="n">T</span><span class="p">[</span><span class="n">mask</span><span class="p">]</span><span class="o">.</span><span class="n">T</span><span class="p">,</span><span class="n">F</span><span class="p">[</span><span class="n">mask</span><span class="p">])</span>
+
+<span class="c1"># assemble the new displacements into the overall displacement array</span>
+<span class="n">u2</span><span class="p">[</span><span class="n">mask</span><span class="p">]</span> <span class="o">=</span> <span class="n">u_new</span>
+
+<span class="c1"># assemble internal forces based on individual element stiffness matrices</span>
+<span class="n">F_beam</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="mi">4</span><span class="o">*</span><span class="n">Nele</span><span class="p">)</span>
+<span class="n">F_py</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="mi">4</span><span class="o">*</span><span class="n">Nele</span><span class="p">)</span>
+<span class="n">I</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">Nele</span><span class="p">):</span>
+    <span class="n">Kbeam</span> <span class="o">=</span> <span class="n">get_Kbeam</span><span class="p">(</span><span class="n">EI</span><span class="p">,</span><span class="n">dx2</span><span class="p">)</span>
+    <span class="n">F_beam</span><span class="p">[</span><span class="mi">2</span><span class="o">*</span><span class="n">I</span><span class="p">:</span><span class="mi">2</span><span class="o">*</span><span class="n">I</span><span class="o">+</span><span class="mi">4</span><span class="p">]</span> <span class="o">=</span> <span class="n">Kbeam</span><span class="nd">@u2</span><span class="p">[</span><span class="n">I</span><span class="p">:</span><span class="n">I</span><span class="o">+</span><span class="mi">4</span><span class="p">]</span>
+    <span class="n">Kpy</span> <span class="o">=</span> <span class="n">get_Kpy_variable</span><span class="p">(</span><span class="n">kyiH</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">x2_ele</span><span class="p">[</span><span class="mi">2</span><span class="o">*</span><span class="n">i</span><span class="p">],</span><span class="n">x2_ele</span><span class="p">[</span><span class="mi">2</span><span class="o">*</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">],</span><span class="n">H</span><span class="p">,</span><span class="n">n</span><span class="p">)</span>
+    <span class="n">F_py</span><span class="p">[</span><span class="mi">2</span><span class="o">*</span><span class="n">I</span><span class="p">:</span><span class="mi">2</span><span class="o">*</span><span class="n">I</span><span class="o">+</span><span class="mi">4</span><span class="p">]</span> <span class="o">=</span> <span class="n">Kpy</span><span class="nd">@u2</span><span class="p">[</span><span class="n">I</span><span class="p">:</span><span class="n">I</span><span class="o">+</span><span class="mi">4</span><span class="p">]</span>
+    <span class="n">I</span><span class="o">+=</span><span class="mi">2</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">ncols</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span><span class="n">sharey</span><span class="o">=</span><span class="s1">&#39;row&#39;</span><span class="p">,</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span><span class="mi">4</span><span class="p">))</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">u2</span><span class="p">[</span><span class="mi">0</span><span class="p">::</span><span class="mi">2</span><span class="p">],</span><span class="n">x2</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">u2</span><span class="p">[</span><span class="mi">1</span><span class="p">::</span><span class="mi">2</span><span class="p">],</span><span class="n">x2</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">F_beam</span><span class="p">[</span><span class="mi">1</span><span class="p">::</span><span class="mi">2</span><span class="p">]</span><span class="o">*-</span><span class="n">ele_sign</span><span class="p">,</span><span class="n">x2_ele</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">F_beam</span><span class="p">[</span><span class="mi">0</span><span class="p">::</span><span class="mi">2</span><span class="p">]</span><span class="o">*</span><span class="n">ele_sign</span><span class="p">,</span><span class="n">x2_ele</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="o">*</span><span class="n">F_py</span><span class="p">[</span><span class="mi">0</span><span class="p">::</span><span class="mi">2</span><span class="p">]</span><span class="o">/</span><span class="n">dx2</span><span class="p">,</span><span class="n">x2_ele</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">invert_yaxis</span><span class="p">()</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;depth (m)&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;u (m)&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$\theta$&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;M (kN-m)&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;V (kN)&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;p (kN/m)&#39;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="n">ax</span><span class="p">:</span>
+    <span class="n">a</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/83f8da613e64e549cc0daab98761b2ecb0c81e5f03323961eeeff31bf445ba23.png" src="_images/83f8da613e64e549cc0daab98761b2ecb0c81e5f03323961eeeff31bf445ba23.png" />
+</div>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Beam on Winkler Foundation Exact Solution and Finite Element Approximation</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#requirements">Requirements</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#purpose">Purpose</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#winkler-assumption">Winkler Assumption</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#definition-of-terms">Definition of Terms</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#governing-differential-equation">Governing Differential Equation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#solution-of-governing-differential-equation">Solution of Governing Differential Equation</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#finite-element-approximate-solution">Finite Element Approximate Solution</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#beam-stiffness-matrix">Beam Stiffness Matrix</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#winkler-stiffness-matrix">Winkler Stiffness Matrix</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#combined-stiffness-matrix">Combined Stiffness Matrix</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#assembling-global-stiffness-matrix-from-element-stiffness-matrices">Assembling global stiffness matrix from element stiffness matrices</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#solving-the-system-of-equations">Solving the System of Equations</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#a-few-comments">A few comments</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#solution-with-vertically-variable-k-y-i">Solution with vertically variable <span class="math notranslate nohighlight">\(k_y^i\)</span></a></li>
+</ul>
+</li>
+</ul>
+
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Scott Brandenberg
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
