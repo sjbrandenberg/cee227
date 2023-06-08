@@ -519,7 +519,7 @@ Note: The units for <span class="math notranslate nohighlight">\(k_y^i\)</span> 
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>- 4 \beta^{4} \left(C_{1} e^{- \beta x} \cos{\left(\beta x \right)} + C_{2} e^{- \beta x} \sin{\left(\beta x \right)} + C_{3} e^{\beta x} \cos{\left(\beta x \right)} + C_{4} e^{\beta x} \sin{\left(\beta x \right)}\right)
 </pre></div>
 </div>
-<img alt="_images/245bda2a2b87f223db069d8f68453260e293525f6170e5c1f6c815b804040932.png" src="_images/245bda2a2b87f223db069d8f68453260e293525f6170e5c1f6c815b804040932.png" />
+<img alt="_images/6e0b1dcb8cf2acb0d6c2fcd12a127fdc12c1987a2703130cdf2496de0adc6c92.png" src="_images/6e0b1dcb8cf2acb0d6c2fcd12a127fdc12c1987a2703130cdf2496de0adc6c92.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -647,7 +647,7 @@ Note: The units for <span class="math notranslate nohighlight">\(k_y^i\)</span> 
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/754cbb4438796dbb1503cb6c5ecc3dea10360ce359eb69c87d8dade5a2196fd1.png" src="_images/754cbb4438796dbb1503cb6c5ecc3dea10360ce359eb69c87d8dade5a2196fd1.png" />
+<img alt="_images/4b798febe44fb0c96ce0be6dd049bb10f2e88afe43d9c8fc58282ab766499803.png" src="_images/4b798febe44fb0c96ce0be6dd049bb10f2e88afe43d9c8fc58282ab766499803.png" />
 </div>
 </div>
 </section>
@@ -655,7 +655,7 @@ Note: The units for <span class="math notranslate nohighlight">\(k_y^i\)</span> 
 <section class="tex2jax_ignore mathjax_ignore" id="finite-element-approximate-solution">
 <h1>Finite Element Approximate Solution<a class="headerlink" href="#finite-element-approximate-solution" title="Permalink to this heading">#</a></h1>
 <p>The finite element approximation requires definition of a stiffness matrix for the basic element, which consists of an Euler-Bernoulli beam supported by two Winkler springs, as illustrated below. Nodes 1 and 2 have two degrees of freedom; one for horizontal displacement and one for rotation. Nodes 3 and 4 are assumed to be fixed (i.e., no free-field ground displacement).</p>
-<img src='WinklerElement.png' alt='Winkler Element' style='height:200px;'>
+<img src='https://raw.githubusercontent.com/sjbrandenberg/cee227/main/WinklerElement.png' alt='Winkler Element' style='height:200px;'>
 <p>The beam stiffness matrix is developed using Hermite cubic polynomial shape functions. These shape functions do not match the analytical solution for constant <span class="math notranslate nohighlight">\(k_y^i\)</span> and <span class="math notranslate nohighlight">\(EI\)</span>, but are reasonably accurate when an adequate number of elements is utilized, and/or when the wall is stiff relative to the soil.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -683,7 +683,7 @@ Note: The units for <span class="math notranslate nohighlight">\(k_y^i\)</span> 
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/00faf7c1faf301e39f2b763089a81536674d891ff7f294a41fca0ca14dbd1501.png" src="_images/00faf7c1faf301e39f2b763089a81536674d891ff7f294a41fca0ca14dbd1501.png" />
+<img alt="_images/241a009dc2b369f9df3eac0cc015ce4878e488234901532d447bba5110e2cbb7.png" src="_images/241a009dc2b369f9df3eac0cc015ce4878e488234901532d447bba5110e2cbb7.png" />
 </div>
 </div>
 <section id="beam-stiffness-matrix">
@@ -961,7 +961,7 @@ u_2\\
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/0e4cc5ade289dc09a65e3c8696e5a409d9b115781ddf1dcb44e33fc417eecbf6.png" src="_images/0e4cc5ade289dc09a65e3c8696e5a409d9b115781ddf1dcb44e33fc417eecbf6.png" />
+<img alt="_images/9d9d93b20a96fd925fc1a39e184c4d55b5c319fa9abd7a4c223021f5f5b2a1ce.png" src="_images/9d9d93b20a96fd925fc1a39e184c4d55b5c319fa9abd7a4c223021f5f5b2a1ce.png" />
 </div>
 </div>
 </section>
@@ -973,7 +973,7 @@ u_2\\
 <h2>Solution with vertically variable <span class="math notranslate nohighlight">\(k_y^i\)</span><a class="headerlink" href="#solution-with-vertically-variable-k-y-i" title="Permalink to this heading">#</a></h2>
 <p>The solution above has an analytical solution, which is nice because we can validate the finite element implementation against a known solution. However, we would never need the finite element method if every problem was so simple. The script below develops a solution for a vertically variable Winkler stiffness intensity. We adopt the form utilized by <a class="reference external" href="https://ascelibrary.org/doi/10.1061/%28ASCE%29GT.1943-5606.0002374">Brandenberg et al (2020)</a>:</p>
 <p><span class="math notranslate nohighlight">\(k_y^i\left(z\right) = k_{yH}^i\left[b+\left(1+b\right)\frac{z}{H}\right]^{2n}\)</span></p>
-<p>where <span class="math notranslate nohighlight">\(k_{yH}^i\)</span> = Winkler stiffness intensity at the bottom of the beam, <span class="math notranslate nohighlight">\(b\)</span> and <span class="math notranslate nohighlight">\(n\)</span> are model coefficients that control the shape of the variation of <span class="math notranslate nohighlight">\(k_y^i\)</span> with depth, and <span class="math notranslate nohighlight">\(H\)</span> is the length of the beam. For static conditions, a rigid wall, and an infinitely long soil deposit, the value of $k_{yH}^i is given by:</p>
+<p>where <span class="math notranslate nohighlight">\(k_{yH}^i\)</span> = Winkler stiffness intensity at the bottom of the beam, <span class="math notranslate nohighlight">\(b\)</span> and <span class="math notranslate nohighlight">\(n\)</span> are model coefficients that control the shape of the variation of <span class="math notranslate nohighlight">\(k_y^i\)</span> with depth, and <span class="math notranslate nohighlight">\(H\)</span> is the length of the beam. For static conditions, a rigid wall, and an infinitely long soil deposit, the value of <span class="math notranslate nohighlight">\(k_{yH}^i\)</span> is given by:</p>
 <p><span class="math notranslate nohighlight">\(k_{yH}^i = \frac{G_H}{H}\frac{2}{\sqrt{\left(1-\nu\right)\left(2-\nu\right)}}\left(1.06 e^{-1.97\left(1-2n\right)-3.01b}+\frac{\pi}{2}\right)\)</span></p>
 <p>We adopt the following parameters:</p>
 <p><span class="math notranslate nohighlight">\(G_H = \rho V_S^2\)</span><br />
@@ -1012,7 +1012,7 @@ u_2\\
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/6f96ec08be1d8fb3df72b6249267637367c3d2dd3a747518c45051c9e064a950.png" src="_images/6f96ec08be1d8fb3df72b6249267637367c3d2dd3a747518c45051c9e064a950.png" />
+<img alt="_images/b85b5e9a9d5b86a358cccafdf679a1184125f98b7d72d561fb082c478375f94d.png" src="_images/b85b5e9a9d5b86a358cccafdf679a1184125f98b7d72d561fb082c478375f94d.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1121,7 +1121,7 @@ u_2\\
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/83f8da613e64e549cc0daab98761b2ecb0c81e5f03323961eeeff31bf445ba23.png" src="_images/83f8da613e64e549cc0daab98761b2ecb0c81e5f03323961eeeff31bf445ba23.png" />
+<img alt="_images/4d278cdf3bdab9515e04d8d07443f95f74d4dcd2e78ec054e29dd031e298ded4.png" src="_images/4d278cdf3bdab9515e04d8d07443f95f74d4dcd2e78ec054e29dd031e298ded4.png" />
 </div>
 </div>
 </section>
