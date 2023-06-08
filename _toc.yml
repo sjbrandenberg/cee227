@@ -12,3 +12,4 @@ chapters:
 - file: nonlinear_elasticity
 - file: cam_clay
 - file: dafalias_manzari
+- file: winkler_foundation
